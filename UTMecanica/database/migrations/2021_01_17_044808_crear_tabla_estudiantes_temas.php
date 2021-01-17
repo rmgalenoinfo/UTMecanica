@@ -15,12 +15,12 @@ class CrearTablaEstudiantesTemas extends Migration
     {
         Schema::create('estudiantes_temas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('estudiante_id');
-            $table->foreign('estudiante_id','fk_estudiante_temas')->references('id')->on('estudiantes')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('estudiantes_id');
+            $table->foreign('estudiantes_id','fk_estudiante_temas')->references('id')->on('estudiantes')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('temas_id');
             $table->foreign('temas_id','fk_temas_estudiantes')->references('id')->on('temas')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('estudiante_id');
-            $table->foreign('docente_id','fk_temas_docentes')->references('id')->on('docentes')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('docentes_id');
+            $table->foreign('docentes_id','fk_temas_docentes')->references('id')->on('docentes')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }
