@@ -17,6 +17,7 @@ class CrearTablaMenus extends Migration
             $table->id();
             $table->string('descripcion', 150);
             $table->string('menu', 150)->unique();
+            $table->string('icono', 150);
             $table->string('url', 150)->nullable();
             $table->timestamps();
         });

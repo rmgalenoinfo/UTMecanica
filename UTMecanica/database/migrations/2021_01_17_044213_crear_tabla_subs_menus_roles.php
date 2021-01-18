@@ -14,8 +14,8 @@ class CrearTablaSubsMenusRoles extends Migration
     public function up()
     {
         Schema::create('subs_menus_roles', function (Blueprint $table) {
-           $table->unsignedBigInteger('subs_menus_id');
-           $table->foreign('subs_menus_id','fk_sub_menus_roles')->references('id')->on('subs_menus')->onDelete('restrict')->onUpdate('restrict');
+           $table->unsignedBigInteger('sub_menus_id');
+           $table->foreign('sub_menus_id','fk_sub_menus_roles')->references('id')->on('sub_menus')->onDelete('restrict')->onUpdate('restrict');
            $table->unsignedBigInteger('roles_id');
            $table->foreign('roles_id', 'fk_roles_sub_menus')->references('id')->on('roles')->onDelete('restrict')->onUpdate('restrict');
         });

@@ -13,12 +13,13 @@ class CrearTablaSubsMenus extends Migration
      */
     public function up()
     {
-        Schema::create('subs_menus', function (Blueprint $table) {
+        Schema::create('sub_menus', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('menus_id');
             $table->foreign('menus_id', 'fk_sub_menu_menu')->references('id')->on('menus')->onDelete('restrict')->onUpdate('restrict');
             $table->string('descripcion', 150);
             $table->string('sub_menu', 150)->unique();
+            $table->string('icono', 150);
             $table->string('url', 150)->unique();
             $table->timestamps();
         });
