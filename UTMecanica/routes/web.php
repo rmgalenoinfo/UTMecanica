@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('theme.back.index');
+    return view('theme.back.login');
+});
+
+Route::get('Inicio', function () {
+    return view('theme.back.inicio');
+})->middleware('auth')->name('Inicio');
+
+Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador']], function() {
+    /*Rutas del menu*/
+    Route::get('menu', [MenuController::class, 'index'])->name('menu');
+    Route::get('menu/crear', [MenuController::class, 'create'])->name('menu.crear');
+    Route::get('menu/{id}/editar', [MenuController::class, 'edit'])->name('menu.edit');
+    Route::post('menu', [MenuController::class, 'guardar'])->name('menu.guardar');
+    Route::put('menu/{id}', [MenuController::class, 'update'])->name('menu.update');
+    Route::delete('menu/{id}/eliminar', [MenuController::class, 'eliminar'])->name('menu.delete');
 });
