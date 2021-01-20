@@ -26,7 +26,7 @@ Route::get('Inicio', function () {
 Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador']], function() {
     /*Rutas del menu*/
     Route::get('menu', [MenuController::class, 'index'])->name('menu');
-    Route::get('menu/crear', [MenuController::class, 'create'])->name('menu.crear');
+    Route::get('menu/crear', [MenuController::class, 'crear'])->name('menu.crear');
     Route::get('menu/{id}/editar', [MenuController::class, 'edit'])->name('menu.edit');
     Route::post('menu', [MenuController::class, 'guardar'])->name('menu.guardar');
     Route::put('menu/{id}', [MenuController::class, 'update'])->name('menu.update');
