@@ -21,6 +21,8 @@ class CrearTablaEstudiantesTemas extends Migration
             $table->foreign('temas_id','fk_temas_estudiantes')->references('id')->on('temas')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('docentes_id');
             $table->foreign('docentes_id','fk_temas_docentes')->references('id')->on('docentes')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('estado_tema_id');
+            $table->foreign('estado_tema_id','fk_temas_estado')->references('id')->on('estado_temas')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

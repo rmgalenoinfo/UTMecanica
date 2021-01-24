@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Backend\ValidacionMenu;
-use App\Models\Menu;
+use App\Models\SubMenuRol;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class SubMenuRolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::all();
-        return view('theme.back.administracion.menus', compact('menus'));
+        //
     }
 
     /**
@@ -24,9 +22,9 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function crear()
+    public function create()
     {
-        return view('theme.back.administracion.grabar_menus');
+        //
     }
 
     /**
@@ -35,20 +33,18 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(ValidacionMenu $request)
+    public function store(Request $request)
     {
-        $validado = $request->validated();
-        Menu::create($validado);
-        return redirect()->route('menu.crear')->with('mensaje', 'Guardado correctamente');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\SubMenuRol  $subMenuRol
      * @return \Illuminate\Http\Response
      */
-    public function show(Menu $menu)
+    public function show(SubMenuRol $subMenuRol)
     {
         //
     }
@@ -56,10 +52,10 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\SubMenuRol  $subMenuRol
      * @return \Illuminate\Http\Response
      */
-    public function edit(Menu $menu)
+    public function edit(SubMenuRol $subMenuRol)
     {
         //
     }
@@ -68,10 +64,10 @@ class MenuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\SubMenuRol  $subMenuRol
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, SubMenuRol $subMenuRol)
     {
         //
     }
@@ -79,10 +75,10 @@ class MenuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\SubMenuRol  $subMenuRol
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Menu $menu)
+    public function destroy(SubMenuRol $subMenuRol)
     {
         //
     }

@@ -18,7 +18,7 @@ class CrearTablaSubsMenus extends Migration
             $table->unsignedBigInteger('menus_id');
             $table->foreign('menus_id', 'fk_sub_menu_menu')->references('id')->on('menus')->onDelete('restrict')->onUpdate('restrict');
             $table->string('descripcion', 150);
-            $table->string('sub_menu', 150)->unique();
+            $table->string('sub_menu_nombre', 150)->unique();
             $table->string('icono', 150);
             $table->string('url', 150)->unique();
             $table->timestamps();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaMenus extends Migration
+class CrearTablaEstadosTemas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CrearTablaMenus extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('estado_temas', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion', 150);
-            $table->string('menu_nombre', 150)->unique();
-            $table->string('icono', 150);
-            $table->string('url', 150)->nullable();
+            $table->string('estado_tema');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CrearTablaMenus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('estado_temas');
     }
 }

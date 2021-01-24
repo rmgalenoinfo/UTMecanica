@@ -15,15 +15,15 @@ class Menu extends Model
         return $this->hasMany(SubMenuRol::class, 'menus_id');
     }
 
-    private function getMenuPadres($fornt)
+    private function getMenus()
     {
+        return $this::all();
     }
 
-    private function getMenusHijos($padres, $line)
+    public static function getMenu()
     {
-    }
-
-    private static function getMenu()
-    {
+        $menus = new Menu();
+        $menuAll = array($menus->getMenus());
+        return $menuAll;
     }
 }

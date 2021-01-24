@@ -25,7 +25,7 @@ class ValidacionMenu extends FormRequest
     {
         return [
             'descripcion' => 'required|max:150',
-            'menu' => 'required|max:150',
+            'menu_nombre' => 'required|max:150',
             'icono' => 'required|max:150',
             'url' => 'nullable|max:150'
         ];

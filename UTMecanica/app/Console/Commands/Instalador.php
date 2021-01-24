@@ -73,7 +73,7 @@ class Instalador extends Command
     {
         return Menu::create([
             'descripcion' => 'Menu de pagina de inicio',
-            'menu' => 'Inicio',
+            'menu_nombre' => 'Inicio',
             'icono' => 'icono',
             'url' => 'ruta Inicio'
         ]);
@@ -84,7 +84,7 @@ class Instalador extends Command
         return SubMenu::create([
             'menus_id' => 1,
             'descripcion'=> 'Menus principal',
-            'sub_menu'=> 'Menus',
+            'sub_menu_nombre'=> 'Menus',
             'icono' => 'icono menu',
             'url' => 'ruta_menu'
         ]);
