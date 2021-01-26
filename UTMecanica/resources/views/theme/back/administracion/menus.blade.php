@@ -3,43 +3,82 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-    <div class="card card-primary">
-        <div class="card-header">
-            <h3 class="card-title">Menus del sistemas</h3>
-            <a href="{{route("menu.crear")}}" class="btn btn-success float-right">Nuevo Menu</a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                @if ($mensaje = session("mensaje"))
+                    <x-alert tipo="success" :mensaje="$mensaje"></x-alert>
+                @endif
+                <div class="card-header">
+                    <h3 class="card-title">Menus del sistemas</h3>
+                    <a href="{{route("menu.crear")}}" class="btn btn-success float-right">Nuevo Menu</a>
+                </div>
+                <div class="card-body">
+                    <table id="datostabla" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Descripción</th>
+                                <th>Nombre Menu</th>
+                                <th>Icono</th>
+                                <th>Rutal URL</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($menus as $item)
+                                <tr>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->descripcion}}</td>
+                                    <td>{{$item->menu_nombre}}</td>
+                                    <td><i class="{{$item->icono}}"></td>
+                                    <td>{{$item->url}}</td>
+                                    <td>
+                                        <a href="{{route("menu.menu_editar", $item->id)}}" class="btn btn-warning" title="Editar">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <form action="{{route("menu.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
+                                            @csrf @method('delete')
+                                            <button href="menu" title="Eliminar" class="btn btn-danger m-1 boton-eliminar-menu">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Descripción</th>
+                                <th>Nombre Menu</th>
+                                <th>Icono</th>
+                                <th>Rutal URL</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <table id="datatable" class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Descripción</th>
-                        <th>Nombre Menu</th>
-                        <th>Icono</th>
-                        <th>Rutal URL</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($menus as $item)
-                        <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->descripcion}}</td>
-                            <td>{{$item->menu_nombre}}</td>
-                            <td><i class="{{$item->icono}}"></td>
-                            <td>{{$item->url}}</td>
-                            <td>
-                                <a href="menu" class="btn btn-warning" title="Editar">
-                                    <i class="far fa-edit"></i>
-                                </a>
-                                <a href="menu" class="btn btn-danger m-2" title="Eliminar">
-                                    <i class="far fa-trash-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    </div>
+    <div class="modal fade" id="confirmar-eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confime esta acción</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Seguro desea eliminar este Menú?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>
+                    <button type="button" id="accion-eliminar" class="btn btn-danger">Si</button>
+                </div>
+            </div>
         </div>
     </div>
 @stop
@@ -48,4 +87,13 @@
 @stop
 
 @section('js')
+<script src="{{asset("assets/back/js/pages/scripts/menu/eliminar.js")}}"></script>
+<script>
+    $(function () {
+        $('#datostabla').DataTable({
+            "responsive": true,
+        });
+    });
+</script>
+
 @stop

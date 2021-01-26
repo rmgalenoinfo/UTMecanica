@@ -4,6 +4,12 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
+            @if ($mensaje = session("mensaje"))
+                <x-alert tipo="success" :mensaje="$mensaje"></x-alert>
+            @endif
+            @if ($errors->any())
+                <x-alert tipo="danger" :mensaje="$errors"></x-alert>
+            @endif
             <!-- Formulario Horizontal -->
             <div class="card card-primary">
                 <!-- Titulo Header -->

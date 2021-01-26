@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Backend\ValidacionRol;
 use App\Models\Rol;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RolController extends Controller
 {
@@ -14,7 +16,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Rol::all();
+        return view('theme.back.roles.roles', compact('roles'));
     }
 
     /**
@@ -22,9 +25,9 @@ class RolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        return view('theme.back.roles.nuevo_rol');
     }
 
     /**
@@ -33,9 +36,15 @@ class RolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(ValidacionRol $request)
     {
-        //
+        $validado = $request->validated();
+        $rol = $validado['nombre'];
+        Rol::create([
+           'nombre'=> $rol,
+           'slug' => Str::slug($rol,'-')
+        ]);
+        return redirect()->route('roles.crear')->with('mensaje', 'Guardado correctamente');
     }
 
     /**

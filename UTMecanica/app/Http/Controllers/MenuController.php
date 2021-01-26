@@ -56,34 +56,37 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Menu $menu)
+    public function edit($id)
     {
-        //
+        $data = Menu::findOrFail($id);
+        return view('theme.back.administracion.menu_editar', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Menu  $menu
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(ValidacionMenu $request, $id)
     {
-        //
+        Menu::findOrFail($id)->update($request->validated());
+        return redirect()->route('menu')->with('mensaje', 'Actualizado con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Menu $menu)
+    public function destroy($id)
     {
-        //
+        Menu::destroy($id);
+        return redirect()->route('menu')->with('mensaje', 'Elimidando con exito');
     }
 }

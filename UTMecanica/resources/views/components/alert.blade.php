@@ -1,5 +1,5 @@
 <div class="alert alert-{{$tipo}} alert-dismissible" role="alert">
-    <h4 class="alert-heading">Error de logeo</h4>
+    <h4 class="alert-heading">UTMecanica!</h4>
     <p>
         @if (is_object($mensaje))
             <ul>
