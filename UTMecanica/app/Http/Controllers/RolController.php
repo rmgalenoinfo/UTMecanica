@@ -61,34 +61,44 @@ class RolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Rol  $rol
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rol $rol)
+    public function edit($id)
     {
-        //
+        $data = Rol::findOrFail($id);
+        return view('theme.back.roles.editar_rol', compact('data'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rol  $rol
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rol $rol)
+    public function update(ValidacionRol $request, $id)
     {
-        //
+        $validado = $request->validated();
+        $rol = $validado['nombre'];
+        Rol::findOrFail($id)->update([
+            'nombre'=> $rol,
+           'slug' => Str::slug($rol,'-')
+        ]);
+        return redirect()->route('roles')->with('mensaje', 'Actualizado con exito');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rol  $rol
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy($id)
     {
-        //
+        Rol::destroy($id);
+        return redirect()->route('roles')->with('mensaje', 'Eliminado con exito');
     }
 }

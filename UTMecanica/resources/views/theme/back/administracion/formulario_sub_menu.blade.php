@@ -5,7 +5,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="menu_nombre" class="col-sm-2 col-form-label requerido">Nombre Menú</label>
+    <label for="menu_nombre" class="col-sm-2 col-form-label requerido">Nombre Submenú</label>
     <div class="col-sm-10">
         <input type="text" class="form-control" name="menu_nombre" id="menu_nombre" value="{{old("menu_nombre", $data->menu_nombre ?? '')}}" maxlength="150" required>
     </div>

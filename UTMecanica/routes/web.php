@@ -3,6 +3,7 @@
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\SubMenuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,14 +26,14 @@ Route::get('Inicio', function () {
 })->middleware('auth')->name('Inicio');
 
 Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador']], function() {
-    /*Rutas del menu*/
+    /*Rutas del menú*/
     Route::get('menu', [MenuController::class, 'index'])->name('menu');
     Route::get('menu/crear', [MenuController::class, 'crear'])->name('menu.crear');
     Route::get('menu/{id}/menu_editar', [MenuController::class, 'edit'])->name('menu.menu_editar');
     Route::post('menu', [MenuController::class, 'guardar'])->name('menu.guardar');
     Route::put('menu/{id}', [MenuController::class, 'update'])->name('menu.update');
     Route::delete('menu/{id}/eliminar', [MenuController::class, 'destroy'])->name('menu.eliminar');
-    /* Fin rutas del menu */
+    /* Fin rutas del menú */
 
     /*Inicio rutas del rol */
     Route::get('roles', [RolController::class, 'index'])->name('roles');
@@ -42,4 +43,13 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     Route::put('roles/{id}', [RolController::class, 'update'])->name('roles.update');
     Route::delete('roles/{id}/eliminar', [RolController::class, 'destroy'])->name('roles.eliminar');
     /*Fin rutas del rol*/
+
+    /*Rutas del submenú*/
+    Route::get('sub_menu', [SubMenuController::class, 'index'])->name('sub_menu');
+    Route::get('sub_menu/crear', [SubMenuController::class, 'crear'])->name('sub_menu.crear');
+    Route::get('sub_menu/{id}/edit', [SubMenuController::class, 'edit'])->name('sub_menu.edit');
+    Route::post('sub_menu', [SubMenuController::class, 'guardar'])->name('sub_menu.guardar');
+    Route::put('sub_menu/{id}', [SubMenuController::class, 'update'])->name('sub_menu.update');
+    Route::delete('sub_menu/{id}/eliminar', [SubMenuController::class, 'destroy'])->name('sub_menu.eliminar');
+    /* Fin rutas del submenú */
 });

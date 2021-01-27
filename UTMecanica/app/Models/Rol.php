@@ -14,7 +14,7 @@ class Rol extends Model
     //relacion de muchos a muchos
     public function subsMenusRoles ()
     {
-        return $this->belongsToMany(SubMenuRol::class, 'subs_menus_roles', 'sub_menus_id', 'roles_id');
+        return $this->belongsToMany(SubMenuRol::class, 'sub_menus_roles', 'sub_menus_id', 'roles_id');
     }
 
     // Relacion uno a muchos

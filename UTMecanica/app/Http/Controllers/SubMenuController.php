@@ -14,7 +14,9 @@ class SubMenuController extends Controller
      */
     public function index()
     {
-        //
+        $subMenus = SubMenu::with('menus')->get()->toArray();
+        dd($subMenus);
+        return view('theme.back.administracion.sub_menus', compact('subMenus'));
     }
 
     /**
@@ -22,7 +24,7 @@ class SubMenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
         //
     }
@@ -33,7 +35,7 @@ class SubMenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(Request $request)
     {
         //
     }

@@ -4,6 +4,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
+            <!-- Mensaje que confirma que se guardo la información en la base de datos -->
+            @if ($mensaje = session("mensaje"))
+                <x-alert tipo="success" :mensaje="$mensaje"></x-alert>
+            @endif
+                <!-- Mensaje que muestra un error al guardar la información de en la base de datos -->
+            @if ($errors->any())
+                <x-alert tipo="danger" :mensaje="$errors"></x-alert>
+            @endif
             <!-- Formulario Horizontal -->
             <div class="card card-primary">
                 <!-- Titulo Header -->

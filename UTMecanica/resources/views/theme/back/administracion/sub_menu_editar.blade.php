@@ -9,7 +9,7 @@
             <div class="card card-primary">
                 <!-- Titulo Header -->
                 <div class="card-header">
-                    <h3 class="card-title">Nuevo Menú</h3>
+                    <h3 class="card-title">Nuevo Menu</h3>
                 </div>
                 <!-- Fin Header -->
                 <!-- Inicio Formulario -->

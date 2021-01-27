@@ -15,7 +15,9 @@ class MenuController extends Controller
      */
     public function index()
     {
+        //llama toda la lista de menus de la base de datos
         $menus = Menu::all();
+        //muestra la vista de la tabla de los menus
         return view('theme.back.administracion.menus', compact('menus'));
     }
 
@@ -26,6 +28,7 @@ class MenuController extends Controller
      */
     public function crear()
     {
+        //muestra la vista para crear un nuevo menu
         return view('theme.back.administracion.grabar_menus');
     }
 
@@ -37,8 +40,11 @@ class MenuController extends Controller
      */
     public function guardar(ValidacionMenu $request)
     {
+        //Valida los datos que es enviado desde el formulario antes de guardar.
         $validado = $request->validated();
+        //Guarda los datos enviados desde el formulario en la base de datos
         Menu::create($validado);
+        //Envia un mensaje que indica que se gurado la información
         return redirect()->route('menu.crear')->with('mensaje', 'Guardado correctamente');
     }
 
@@ -61,7 +67,9 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
+        //Buaca el menu que se va a editar
         $data = Menu::findOrFail($id);
+        //Mustra la ventana la para editar el menu
         return view('theme.back.administracion.menu_editar', compact('data'));
     }
 
@@ -74,7 +82,9 @@ class MenuController extends Controller
      */
     public function update(ValidacionMenu $request, $id)
     {
+        //Primero valida la información editada y despues edita en la base de datos
         Menu::findOrFail($id)->update($request->validated());
+        //Envia un mensaje despues de editar la información en la base de datos.
         return redirect()->route('menu')->with('mensaje', 'Actualizado con exito');
     }
 
@@ -86,7 +96,9 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
+        //elimina la información de la base de datos
         Menu::destroy($id);
-        return redirect()->route('menu')->with('mensaje', 'Elimidando con exito');
+        //Envia un mensaje confirmando que la información a sido eliminada.
+        return redirect()->route('menu')->with('mensaje', 'Eliminado con exito');
     }
 }

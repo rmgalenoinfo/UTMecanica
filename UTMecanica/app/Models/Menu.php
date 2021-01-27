@@ -12,7 +12,7 @@ class Menu extends Model
 
     public function subMenus()
     {
-        return $this->hasMany(SubMenuRol::class, 'menus_id');
+        return $this->hasMany(SubMenu::class, 'menus_id');
     }
 
     private function getMenus()
