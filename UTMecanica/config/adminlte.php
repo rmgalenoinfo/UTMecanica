@@ -235,76 +235,32 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Inicio 2',
+            'text'        => 'Inicio',
             'url'         => 'Inicio',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-home',
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Administrar',
+            'icon'    => 'fas fa-tools',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Menús',
+                    'icon' => 'fas fa-bars',
+                    'url'  => 'administrar/menu',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Submenús',
+                    'icon' => 'fas fa-stream',
+                    'url'  => 'administrar/sub_menu',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+                    'text' => 'Asignar Menús',
+                    'icon' => 'far fa-address-card',
+                    'url'  => 'administrar/asignar_menu',
+                ]
+            ]
+        ]
     ],
 
     /*

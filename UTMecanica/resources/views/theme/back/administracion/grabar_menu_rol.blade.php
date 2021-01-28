@@ -16,22 +16,22 @@
             <div class="card card-primary">
                 <!-- Titulo Header -->
                 <div class="card-header">
-                    <h3 class="card-title">Nuevo Submenú</h3>
+                    <h3 class="card-title">Nuevo Menú Rol</h3>
                 </div>
                 <!-- Fin Header -->
                 <!-- Inicio Formulario -->
-                <form action="{{route("sub_menu.guardar")}}" id="form-general" method="POST">
+                <form action="{{route("asignar_menu.guardar")}}" id="form-general" method="POST">
 
                     @csrf <!-- Genera el tocken de para el ingreso de datos -->
                     <div class="card-body">
                         <!-- Trae los componentes de otro formulario-->
-                        @include('theme.back.administracion.formulario_sub_menu')
+                        @include('theme.back.administracion.formulario_menu_rol')
                     </div>
                     <div class="card-footer">
                         <!-- Botón que guarda la información en la base de datos -->
                         <button type="submit" class="btn btn-primary">Grabar</button>
                         <!-- Botón que regresa al formulario de la tabla -->
-                        <a class="btn btn-default float-right" href="{{route("sub_menu")}}">Cancelar</a>
+                        <a class="btn btn-default float-right" href="{{route("asignar_menu")}}">Cancelar</a>
                     </div>
                 </form>
                 <!-- Fin formulario -->

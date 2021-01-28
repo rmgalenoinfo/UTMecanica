@@ -9,18 +9,18 @@
             <div class="card card-primary">
                 <!-- Titulo Header -->
                 <div class="card-header">
-                    <h3 class="card-title">Nuevo Menu</h3>
+                    <h3 class="card-title">Editar Submenú</h3>
                 </div>
                 <!-- Fin Header -->
                 <!-- Inicio Formulario -->
-                <form action="{{route("menu.update", $data->id)}}" id="form-general" method="POST">
+                <form action="{{route("sub_menu.update", $data->id)}}" id="form-general" method="POST">
                     @csrf @method('put')
                     <div class="card-body">
-                        @include('theme.back.administracion.formulario_menu')
+                        @include('theme.back.administracion.formulario_sub_menu')
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Grabar</button>
-                        <a class="btn btn-default float-right" href="{{route("menu")}}">Cancelar</a>
+                        <a class="btn btn-default float-right" href="{{route("sub_menu")}}">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -33,5 +33,4 @@
 @stop
 
 @section('js')
-    <link rel="stylesheet" href="{{asset("assets/back/js/page/scripts/menu/eliminar.js")}}">
 @stop

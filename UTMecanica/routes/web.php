@@ -4,6 +4,7 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SubMenuController;
+use App\Http\Controllers\SubMenuRolController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,4 +53,11 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     Route::put('sub_menu/{id}', [SubMenuController::class, 'update'])->name('sub_menu.update');
     Route::delete('sub_menu/{id}/eliminar', [SubMenuController::class, 'destroy'])->name('sub_menu.eliminar');
     /* Fin rutas del submenú */
+
+    /*Rutas del asignar menu*/
+    Route::get('asignar_menu', [SubMenuRolController::class, 'index'])->name('asignar_menu');
+    Route::get('asignar_menu/crear', [SubMenuRolController::class, 'crear'])->name('asignar_menu.crear');
+    Route::post('asignar_menu', [SubMenuRolController::class, 'guardar'])->name('asignar_menu.guardar');
+    Route::delete('asignar_menu/{subMenusId, rolesId}/eliminar', [SubMenuRolController::class, 'destroy'])->name('asignar_menu.eliminar');
+    /* Fin rutas del asignar menú */
 });

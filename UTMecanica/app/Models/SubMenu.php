@@ -11,7 +11,7 @@ class SubMenu extends Model
     protected $guarded = [];
 
     public function menus() {
-        return $this->belongsTo(Menu__class::class);
+        return $this->belongsTo(Menu::class);
     }
 
     public function subMenusRol()
