@@ -255,6 +255,11 @@ return [
                     'url'  => 'administrar/sub_menu',
                 ],
                 [
+                    'text' => 'Roles',
+                    'icon' => 'fas fa-user-lock',
+                    'url'  => 'administrar/roles',
+                ],
+                [
                     'text' => 'Asignar Menús',
                     'icon' => 'far fa-address-card',
                     'url'  => 'administrar/asignar_menu',

@@ -58,6 +58,6 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     Route::get('asignar_menu', [SubMenuRolController::class, 'index'])->name('asignar_menu');
     Route::get('asignar_menu/crear', [SubMenuRolController::class, 'crear'])->name('asignar_menu.crear');
     Route::post('asignar_menu', [SubMenuRolController::class, 'guardar'])->name('asignar_menu.guardar');
-    Route::delete('asignar_menu/{subMenusId, rolesId}/eliminar', [SubMenuRolController::class, 'destroy'])->name('asignar_menu.eliminar');
+    Route::delete('asignar_menu/{subMenusId}/{rolesId}/eliminar', [SubMenuRolController::class, 'destroy'])->name('asignar_menu.eliminar');
     /* Fin rutas del asignar menú */
 });

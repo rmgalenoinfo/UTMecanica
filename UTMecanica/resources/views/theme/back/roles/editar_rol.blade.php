@@ -17,7 +17,7 @@
             <div class="card card-primary">
                 <!-- Titulo Header -->
                 <div class="card-header">
-                    <h3 class="card-title">Nuevo rol</h3>
+                    <h3 class="card-title">Editar Rol</h3>
                 </div>
                 <!-- Fin Header -->
                 <!-- Inicio Formulario -->

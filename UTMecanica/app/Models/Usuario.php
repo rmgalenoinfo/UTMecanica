@@ -34,4 +34,9 @@ class Usuario extends Authenticatable
     public function roles(){
         return $this->belongsTo(Rol::class);
     }
+
+    //relacion uno a muchos
+    public function estudiates(){
+        return $this->hasMany(Estudiante::class);
+    }
 }

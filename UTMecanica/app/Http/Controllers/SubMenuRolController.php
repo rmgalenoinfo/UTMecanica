@@ -97,6 +97,6 @@ class SubMenuRolController extends Controller
         DB::table('sub_menus_roles')
         ->where('sub_menus_id', '=', $subMenusId)
         ->where('roles_id', '=', $rolesId)->delete();
-        return redirect()->route('asignar_menu.crear')->with('mensaje', 'Eliminado correctamente');
+        return redirect()->route('asignar_menu')->with('mensaje', 'Eliminado correctamente');
     }
 }

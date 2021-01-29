@@ -37,7 +37,7 @@
                                     <td>{{$item->nombre}}</td>
                                     <td>
                                         <!-- Formulario para eliminar información de especifica de una tabla de la base de datos -->
-                                        <form action="{{route("asignar_menu.eliminar", $item->sub_menus_id, $item->roles_id)}}"  class="form-eliminar-menu d-inline" method="POST">
+                                        <form action="{{route("asignar_menu.eliminar",['subMenusId'=>$item->sub_menus_id, 'rolesId'=>$item->roles_id])}}"  class="form-eliminar-menu d-inline" method="POST">
                                             @csrf @method('delete')
                                             <button href="menu" title="Eliminar" class="btn btn-danger m-1 boton-eliminar-menu">
                                                 <i class="far fa-trash-alt"></i>
@@ -47,15 +47,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                         <!--Títulos superior de los campos contiene las tablas de la base de datos-->
-                        <tfoot>
-                            <tr>
-                                <th>Menu</th>
-                                <th>Submenú</th>
-                                <th>Rol</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
+                        <!--Títulos superior de los campos contiene las tablas de la base de datos-->
                     </table>
                 </div>
             </div>

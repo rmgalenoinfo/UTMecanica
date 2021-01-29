@@ -57,18 +57,6 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                         <!--Títulos superior de los campos contiene las tablas de la base de datos-->
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Descripción</th>
-                                <th>Nombre Submenú</th>
-                                <th>Icono</th>
-                                <th>Rutal URL</th>
-                                <th>Menu</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>

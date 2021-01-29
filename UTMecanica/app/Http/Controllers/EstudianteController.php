@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
+use App\Models\Rol;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
@@ -14,7 +16,8 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        //
+        $estudiantes = Estudiante::all();
+        return view('theme.back.administracion.estudiates', compact('estudiantes'));
     }
 
     /**
@@ -22,9 +25,10 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        $roles = Rol::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view('theme.back.administracion.estudiates_crear', compact('roles'));
     }
 
     /**
@@ -33,9 +37,10 @@ class EstudianteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function grabar(Request $request)
     {
-        //
+        $lastId = Usuario::orderBy('id', 'desc')->first();
+
     }
 
     /**
@@ -69,7 +74,7 @@ class EstudianteController extends Controller
      */
     public function update(Request $request, Estudiante $estudiante)
     {
-        //
+
     }
 
     /**
