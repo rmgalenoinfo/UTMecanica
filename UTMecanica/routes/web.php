@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SubMenuController;
@@ -60,4 +61,15 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     Route::post('asignar_menu', [SubMenuRolController::class, 'guardar'])->name('asignar_menu.guardar');
     Route::delete('asignar_menu/{subMenusId}/{rolesId}/eliminar', [SubMenuRolController::class, 'destroy'])->name('asignar_menu.eliminar');
     /* Fin rutas del asignar menú */
+
+    /*Inicio rutas del rol */
+    Route::get('estudiantes', [EstudianteController::class, 'index'])->name('estudiantes');
+    Route::get('estudiantes/crear', [EstudianteController::class, 'crear'])->name('estudiantes.crear');
+    Route::get('estudiantes/{id}/ficha', [EstudianteController::class, 'ficha'])->name('estudiantes.ficha');
+    Route::get('estudiantes/{id}/edit', [EstudianteController::class, 'edit'])->name('estudiantes.edit');
+    Route::post('estudiantes', [EstudianteController::class, 'guardar'])->name('estudiantes.guardar');
+    Route::put('estudiantes/{id}', [EstudianteController::class, 'update'])->name('estudiantes.update');
+    Route::delete('estudiantes/{id}/eliminar', [EstudianteController::class, 'destroy'])->name('estudiantes.eliminar');
+    /*Fin rutas del rol*/
+
 });

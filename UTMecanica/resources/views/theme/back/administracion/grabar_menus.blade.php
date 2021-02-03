@@ -31,7 +31,7 @@
                         <!-- Botón que guarda la información en la base de datos -->
                         <button type="submit" class="btn btn-primary">Grabar</button>
                         <!-- Botón que regresa al formulario de la tabla -->
-                        <a class="btn btn-default float-right" href="{{route("menu")}}">Cancelar</a>
+                        <a class="btn btn-default float-right" href="{{route("menu")}}">Volver a Lista</a>
                     </div>
                 </form>
                 <!-- Fin formulario -->

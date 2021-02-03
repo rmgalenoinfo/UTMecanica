@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Grabar</button>
-                        <a class="btn btn-default float-right" href="{{route("menu")}}">Cancelar</a>
+                        <a class="btn btn-default float-right" href="{{route("menu")}}">Volver a Lista</a>
                     </div>
                 </form>
             </div>

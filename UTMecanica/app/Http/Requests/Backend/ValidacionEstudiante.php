@@ -13,7 +13,7 @@ class ValidacionEstudiante extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,23 @@ class ValidacionEstudiante extends FormRequest
     public function rules()
     {
         return [
-            //
+            'identificacion_estudiante' => 'required|max:10',
+            'nombre_estudiante' => 'required|max:100',
+            'apellido_estudiante' => 'required|max:100',
+            'correo_estudiante' => 'required|max:255',
+            'celular_estudiante' => 'required|max:10',
+            'periodo' => 'required|max:4',
+            'egresado' => 'boolean',
+            'graduado' => 'boolean',
+            'rechazado' => 'boolean',
+            'observaciones' => 'required',
+            'condiciones' => 'required',
+            'habilitado' => 'boolean',
+            'roles_id' => 'required',
+            'email' => 'required|max:100',
+            'password' => 'required|max:100',
+            'fecha_caducidad' => 'required',
+            'estado' => 'boolean',
         ];
     }
 }

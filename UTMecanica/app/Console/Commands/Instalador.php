@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Docente;
 use App\Models\Menu;
 use App\Models\Rol;
 use App\Models\SubMenu;
@@ -49,6 +50,7 @@ class Instalador extends Command
             $rol = $this->crearRolAdministrador();
             $rol->subsMenusRoles()->attach($subMenus);
             $usuario = $this->crearUsuarioAdmin();
+            $docente = $this->crearDocente();
             $this -> line('El instalador se ejecuto correctamente');
         }else{
             $this -> error('No se puede ejecutar el instalador');
@@ -98,6 +100,18 @@ class Instalador extends Command
             'password' => Hash::make('admin123'),
             'fecha_caducidad' => '2022-12-31',
             'estado' => 1
+        ]);
+    }
+
+    private function crearDocente () {
+        return Docente::create([
+            'usuario_id' => 1,
+            'identificacion_docente' => '12345678910',
+            'nombre_docente' => 'Docente',
+            'apellido_docente' => 'Administrador',
+            'correo_docente' => 'correo@mail.com',
+            'celular' => '0984561258',
+            'habilitado' => true
         ]);
     }
 }

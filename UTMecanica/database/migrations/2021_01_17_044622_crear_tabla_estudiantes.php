@@ -17,7 +17,7 @@ class CrearTablaEstudiantes extends Migration
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id','fk_estudiante_usuario')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
-            $table->string('indentificacion_estudante', 10)->unique();
+            $table->string('indentificacion_estudiante', 10)->unique();
             $table->string('nombre_estudiante', 100);
             $table->string('apellido_estudiante', 100);
             $table->string('correo_estudiante')->unique();
