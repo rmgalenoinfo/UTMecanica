@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Tema extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }

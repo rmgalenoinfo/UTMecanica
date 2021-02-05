@@ -13,7 +13,7 @@
                 <x-alert tipo="danger" :mensaje="$errors"></x-alert>
             @endif
             <!-- Formulario Horizontal -->
-            <form action="{{route("estudiantes.update")}}" id="form-general" method="POST">
+            <form action="{{route("estudiantes.update", $data->id)}}" id="form-general" method="POST">
                 @csrf @method('put') <!-- Genera el tocken de para el ingreso de datos -->
             <!-- Trae los componentes de otro formulario-->
                 @include('theme.back.estudiantes.formulario')
@@ -29,4 +29,21 @@
 @stop
 
 @section('js')
+    <script>
+        $('#egresado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+        $('#graduado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+        $('#rechazado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+        $('#habilitado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+        $('#estado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+    </script>
 @stop

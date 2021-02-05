@@ -12,7 +12,7 @@
                 <!-- Título del cuadro tipo tarjeta -->
                 <div class="card-header">
                     <!--Título de la tarjeta -->
-                    <h3 class="card-title">Menús del sistemas</h3>
+                    <h3 class="card-title">Estudiantes</h3>
                     <!--Botón para ir al formaulario para ingresar nuevos datos en la base de datos-->
                     <a href="{{route("estudiantes.crear")}}" class="btn btn-success float-right">Nuevo Estudiante</a>
                 </div>
@@ -36,7 +36,7 @@
                             @foreach ($estudiantes as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->identifiacion_estudiante}}</td>
+                                    <td>{{$item->indentificacion_estudiante}}</td>
                                     <td>{{$item->apellido_estudiante}}</td>
                                     <td>{{$item->nombre_estudiante}}</td>
                                     <td>{{$item->correo_estudiante}}</td>
@@ -48,12 +48,12 @@
                                         </a>
                                         <!-- Se dirige al formulario para editar información de una tabla especifica de la base de datos -->
                                         <a href="{{route("estudiantes.edit", $item->id)}}" class="btn btn-warning" title="Edit">
-                                            <i class="far fa-edit"></i>
+                                            <i class="far m-1 fa-edit"></i>
                                         </a>
                                         <!-- Formulario para eliminar información de especifica de una tabla de la base de datos -->
                                         <form action="{{route("estudiantes.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
                                             @csrf @method('delete')
-                                            <button href="menu" title="Eliminar" class="btn btn-danger m-1 boton-eliminar-menu">
+                                            <button href="menu" title="Eliminar" class="btn btn-danger boton-eliminar-menu">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
                                         </form>

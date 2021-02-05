@@ -36,9 +36,8 @@ class ValidacionEstudiante extends FormRequest
             'observaciones' => 'required',
             'condiciones' => 'required',
             'habilitado' => 'boolean',
-            'roles_id' => 'required',
             'email' => 'required|max:100',
-            'password' => 'required|max:100',
+            'password' => 'max:100',
             'fecha_caducidad' => 'required',
             'estado' => 'boolean',
         ];

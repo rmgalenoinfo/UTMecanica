@@ -13,8 +13,8 @@
                 <x-alert tipo="danger" :mensaje="$errors"></x-alert>
             @endif
             <!-- Formulario Horizontal -->
-            <form action="{{route("docentes.guardar")}}" id="form-general" method="POST">
-                @csrf <!-- Genera el tocken de para el ingreso de datos -->
+            <form action="{{route("docentes.update", $data->id)}}" id="form-general" method="POST">
+                @csrf @method('put') <!-- Genera el tocken de para el ingreso de datos -->
             <!-- Trae los componentes de otro formulario-->
                 @include('theme.back.docentes.formulario')
             </form>

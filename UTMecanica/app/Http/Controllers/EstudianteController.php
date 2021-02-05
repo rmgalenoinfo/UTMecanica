@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Backend\ValidacionEstudiante;
 use App\Models\Estudiante;
-use App\Models\Rol;
 use App\Models\Usuario;
+use ErrorException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,8 +29,8 @@ class EstudianteController extends Controller
      */
     public function crear()
     {
-        $roles = Rol::orderBy('id')->pluck('nombre', 'id')->toArray();
-        return view('theme.back.estudiantes.grabar', compact('roles'));
+        $requerido = true;
+        return view('theme.back.estudiantes.grabar', compact('requerido'));
     }
 
     /**
@@ -41,39 +41,68 @@ class EstudianteController extends Controller
      */
     public function guardar(ValidacionEstudiante $request)
     {
+        $egresado = 0;
+        $graduado = 0;
+        $rechazado = 0;
+        $habilitado = 0;
+        $estado = 0;
         $lastId = Usuario::max('id');
         if ($lastId == null){
             $lastId = 0;
         }
-        $lastid = $lastId + 1;
+        $lastId = $lastId + 1;
         $validado = $request->validated();
-        dd($validado);
+        try{
+            $egresado = $validado['egresado'];
+        } catch (ErrorException $e){
+            $egresado = 0;
+        }
+        try{
+            $graduado = $validado['graduado'];
+        } catch (ErrorException $e){
+            $graduado = 0;
+        }
+        try{
+            $rechazado = $validado['rechazado'];
+        } catch (ErrorException $e){
+            $rechazado = 0;
+        }
+        try{
+            $habilitado = $validado['habilitado'];
+        } catch (ErrorException $e){
+            $habilitado = 0;
+        }
+        try{
+            $estado = $validado['estado'];
+        } catch (ErrorException $e){
+            $estado = 0;
+        }
         $usuario = [
             'id'=>$lastId,
-            'roles_id'=>$validado['roles_id'],
+            'roles_id'=>5,
             'email'=>$validado['email'],
             'password'=>Hash::make($validado['password']),
             'fecha_caducidad'=>$validado['fecha_caducidad'],
-            'estado'=>$validado['estado']
+            'estado'=>$estado
         ];
         Usuario::create($usuario);
         $estudiante = [
             'usuario_id'=>$lastId,
-            'identificacion_estudiante'=>$validado['identificacion_estudiante'],
+            'indentificacion_estudiante'=>$validado['identificacion_estudiante'],
             'nombre_estudiante'=>$validado['nombre_estudiante'],
-            'apellido_estudiante'=>$validado['identificacion_estudiante'],
+            'apellido_estudiante'=>$validado['apellido_estudiante'],
             'correo_estudiante'=>$validado['correo_estudiante'],
             'celular_estudiante'=>$validado['celular_estudiante'],
             'periodo'=>$validado['periodo'],
-            'egresado'=>$validado['egresado'],
-            'graduado'=>$validado['graduado'],
-            'rechazado'=>$validado['rechazado'],
-            'observaciones'=>$validado['obaservaciones'],
+            'egresado'=>$egresado,
+            'graduado'=>$graduado,
+            'rechazado'=>$rechazado,
+            'observaciones'=>$validado['observaciones'],
             'condiciones'=>$validado['condiciones'],
-            'habilitado'=>$validado['habilitado']
+            'habilitado'=>$habilitado
         ];
         Estudiante::create($estudiante);
-        return redirect()->route('estudiantes.ficha')->with('mensaje', 'Guardado correctamente');
+        return redirect()->route('estudiantes', )->with('mensaje', 'Guardado Correctamente');
     }
 
     /**
@@ -95,9 +124,12 @@ class EstudianteController extends Controller
      */
     public function ficha($id)
     {
-        $roles = Rol::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $data = Estudiante::with('usuarios')->findOrFail($id);
-        return view('theme.back.estudiantes.ficha', compact('data','roles'));
+        $data = Estudiante::with('usuario')->findOrFail($id);
+        $date = date('Y-m-d', strtotime($data->usuario->fecha_caducidad));
+        $usuario = $data -> usuario;
+        $usuario['fecha_caducidad'] = $date;
+        $data['usuario'] = $usuario;
+        return view('theme.back.estudiantes.ficha', compact('data'));
     }
 
     /**
@@ -108,9 +140,13 @@ class EstudianteController extends Controller
      */
     public function edit($id)
     {
-        $roles = Rol::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $data = Estudiante::with('usuarios')->findOrFail($id);
-        return view('theme.back.estudiantes.editar', compact('data','roles'));
+        $data = Estudiante::with('usuario')->findOrFail($id);
+        $date = date('Y-m-d', strtotime($data->usuario->fecha_caducidad));
+        $usuario = $data -> usuario;
+        $usuario['fecha_caducidad'] = $date;
+        $data['usuario'] = $usuario;
+        $requerido = false;
+        return view('theme.back.estudiantes.editar', compact('data', 'requerido'));
     }
 
     /**
@@ -122,32 +158,75 @@ class EstudianteController extends Controller
      */
     public function update(ValidacionEstudiante $request, $id)
     {
+        $egresado = 0;
+        $graduado = 0;
+        $rechazado = 0;
+        $habilitado = 0;
+        $estado = 0;
         $validado = $request->validated();
-        $estud = Estudiante::where('$id','=', $id)->get(array('id'));
-        $usuario = [
-            'roles_id'=>$validado['roles_id'],
-            'email'=>$validado['email'],
-            'password'=>$validado['password'],
-            'fecha_caducidad'=>$validado['fecha_caducidad'],
-            'estado'=>$validado['estado']
-        ];
-        Usuario::findOrFail($estud->id)->update($usuario);
+        $password = '';
+        $estud = Estudiante::where('id','=', $id)->get('usuario_id');
+        try{
+            $egresado = $validado['egresado'];
+        } catch (ErrorException $e){
+            $egresado = 0;
+        }
+        try{
+            $graduado = $validado['graduado'];
+        } catch (ErrorException $e){
+            $graduado = 0;
+        }
+        try{
+            $rechazado = $validado['rechazado'];
+        } catch (ErrorException $e){
+            $rechazado = 0;
+        }
+        try{
+            $habilitado = $validado['habilitado'];
+        } catch (ErrorException $e){
+            $habilitado = 0;
+        }
+        try{
+            $estado = $validado['estado'];
+        } catch (ErrorException $e){
+            $estado = 0;
+        }
+        try{
+            $password = $validado['password'];
+        } catch (ErrorException $e){
+            $password = '';
+        }
+        if ($password == ''){
+            $usuario = [
+                'email'=>$validado['email'],
+                'fecha_caducidad'=>$validado['fecha_caducidad'],
+                'estado'=>$estado
+            ];
+        } else {
+            $usuario = [
+                'email'=>$validado['email'],
+                'password'=>Hash::make($validado['password']),
+                'fecha_caducidad'=>$validado['fecha_caducidad'],
+                'estado'=>$estado
+            ];
+        }
+        Usuario::findOrFail($estud[0]->usuario_id)->update($usuario);
         $estudiante = [
-            'identificacion_estudiante'=>$validado['identificacion_estudiante'],
+            'indentificacion_estudiante'=>$validado['identificacion_estudiante'],
             'nombre_estudiante'=>$validado['nombre_estudiante'],
-            'apellido_estudiante'=>$validado['identificacion_estudiante'],
+            'apellido_estudiante'=>$validado['apellido_estudiante'],
             'correo_estudiante'=>$validado['correo_estudiante'],
             'celular_estudiante'=>$validado['celular_estudiante'],
             'periodo'=>$validado['periodo'],
-            'egresado'=>$validado['egresado'],
-            'graduado'=>$validado['graduado'],
-            'rechazado'=>$validado['rechazado'],
-            'observaciones'=>$validado['obaservaciones'],
+            'egresado'=>$egresado,
+            'graduado'=>$graduado,
+            'rechazado'=>$rechazado,
+            'observaciones'=>$validado['observaciones'],
             'condiciones'=>$validado['condiciones'],
-            'habilitado'=>$validado['habilitado']
+            'habilitado'=>$habilitado
         ];
         Estudiante::findOrFail($id)->update($estudiante);
-        return redirect()->route('estudiantes.ficha')->with('mensaje', 'Guardado correctamente');
+        return redirect()->route('estudiantes.ficha', $id)->with('mensaje', 'Actualizado Correctamente');
     }
 
     /**
@@ -158,9 +237,9 @@ class EstudianteController extends Controller
      */
     public function destroy($id)
     {
-        $estud = Estudiante::where('$id','=', $id)->get(array('id'));
-        Usuario::destroy($estud->id);
+        $estud = Estudiante::where('id','=', $id)->get('usuario_id');
         Estudiante::destroy($id);
-        return redirect()->route('estudiantes.ficha')->with('mensaje', 'Guardado correctamente');
+        Usuario::destroy($estud[0]->usuario_id);
+        return redirect()->route('estudiantes')->with('mensaje', 'Se elimino el estudiante correctamente');
     }
 }

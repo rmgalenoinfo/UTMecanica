@@ -12,11 +12,11 @@
             <div class="form-group row">
                 <label for="identificacion_estudiante" class="col-sm-3 col-form-label requerido">Identificación</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="identificacion_estudiante" id="identificacion_estudiante" value="{{old("identificacion_estudiante", $data->identificacion_estudiante ?? '')}}" maxlength="10" required>
+                    <input type="text" class="form-control" name="identificacion_estudiante" id="identificacion_estudiante" value="{{old("identificacion_estudiante", $data->indentificacion_estudiante ?? '')}}" maxlength="10" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="menu_nombre" class="col-sm-3 col-form-label requerido">Nombre</label>
+                <label for="nombre_estudiante" class="col-sm-3 col-form-label requerido">Nombre</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="nombre_estudiante" id="nombre_estudiante" value="{{old("nombre_estudiante", $data->nombre_estudiante ?? '')}}" maxlength="100" required>
                 </div>
@@ -50,29 +50,29 @@
             <div class="form-group row">
                 <label for="observaciones" class="col-sm-3 col-form-label requerido">Observaciones</label>
                 <div class="col-sm-9">
-                    <textarea class="form-control" name="observaciones" id="observaciones" value="{{old("observaciones", $data->observaciones ?? '')}}" required></textarea>
+                    <textarea class="form-control" name="observaciones" id="observaciones" value="{{old("observaciones")}}" required>{{$data->observaciones ?? ''}}</textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="condiciones" class="col-sm-3 col-form-label requerido">Condiciones</label>
                 <div class="col-sm-9">
-                    <textarea class="form-control" name="condiciones" id="condiciones" value="{{old("condiciones", $data->condiciones ?? '')}}" required></textarea>
+                    <textarea class="form-control" name="condiciones" id="condiciones" value="{{old("condiciones", )}}" required>{{$data->condiciones ?? ''}}</textarea>
                 </div>
             </div>
             <div class="offset-sm-3 col-sm-12 form-check">
-                <input type="checkbox" class="form-check-input" name="egresado" id="egresado" value="{{old("egresado")}}">
+                <input type="checkbox" class="form-check-input" name="egresado" id="egresado" value="{{isset($data) ? ($data->egresado) : 0}}" @if (isset($data))  @if ($data->egresado == 1) checked @endif @endif>
                 <label for="form-check-label" for="egresado">Egresado</label>
             </div>
-            <div class="offset-sm-3 form-check">
-                <input type="checkbox" class="form-check-input" name="graduado" id="graduado" value="{{old("graduado")}}">
-                <label for="form-check-label" for="graduado">graduado</label>
+            <div class="offset-sm-3 col-sm-12 form-check">
+                <input type="checkbox" class="form-check-input" name="graduado" id="graduado" value="{{isset($data) ? ($data->graduado) : 0}}" @if (isset($data))  @if ($data->graduado == 1) checked @endif @endif>
+                <label for="form-check-label" for="graduado">Graduado</label>
             </div>
             <div class="offset-sm-3 col-sm-12 form-check">
-                <input type="checkbox" class="form-check-input" name="rechazado" id="rechazado" value="{{old("rechazado")}}">
+                <input type="checkbox" class="form-check-input" name="rechazado" id="rechazado" value="{{isset($data) ? ($data->rechazado) : 0}}" @if (isset($data))  @if ($data->rechazado == 1) checked @endif @endif>
                 <label for="form-check-label" for="rechazado">Rechazado</label>
             </div>
             <div class="offset-sm-3 col-sm-12 form-check">
-                <input type="checkbox" class="form-check-input" name="habilitado" id="habilitado" value="{{old("habilitado")}}">
+                <input type="checkbox" class="form-check-input" name="habilitado" id="habilitado" value="{{isset($data) ? ($data->habilitado) : 0}}" @if (isset($data))  @if ($data->habilitado == 1) checked @endif @endif>
                 <label for="form-check-label" for="habilitado">Habilitado</label>
             </div>
         </div>
@@ -87,39 +87,26 @@
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label requerido">Usuario Email</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="email" id="email" value="{{old("email", $data->usuarios->email ?? '')}}" maxlength="100" required>
+                    <input type="text" class="form-control" name="email" id="email" value="{{old("email", $data->usuario->email ?? '')}}" maxlength="100" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="fecha_caducidad" class="col-sm-4 col-form-label requerido">Fecha de Caducidad</label>
                 <div class="col-sm-8">
-                    <input type="date" class="form-control" name="fecha_caducidad" id="fecha_caducidad" value="{{old("fecha_caducidad", $data->usuarios->fecha_caducidad ?? '')}}" required>
+                    <input type="date" class="form-control" name="fecha_caducidad" id="fecha_caducidad" value="{{old("fecha_caducidad", $data->usuario->fecha_caducidad ?? '')}}" required>
                 </div>
-            </div>
-            <div class="col-sm-3 form-check">
-                <input type="checkbox" class="form-check-input" name="estado" id="estado" value="1" {{old("estado") ? 'checked'="checked" : ''}}>
-                <label for="form-check-label" for="estado">Estado</label>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group row">
-                <label for="email" class="col-sm-3 col-form-label requerido">Contraseña</label>
+                <label for="email" class="col-sm-3 col-form-label @if ($requerido) requerido @endif">Contraseña</label>
                 <div class="col-sm-9">
-                    <input type="password" class="form-control" name="password" id="password" value="{{old("password", $data->usuarios->password ?? '')}}" maxlength="100" required>
+                    <input type="password" class="form-control" name="password" id="password" value="{{old("password")}}" maxlength="100" @if ($requerido) required @endif>
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="url" class="col-sm-3 col-form-label requerido">Rol</label>
-                <div class="col-sm-9">
-                    <select name="roles_id" id="roles_id" class="form-control" required>
-                        <option value="">Seleccione el Rol</option>
-                        @foreach ($roles as $id=>$nombre)
-                            <option value="{{$id}}" {{isset($data) ? (($id == $data->roles_id->id) ? 'selected' : '') : ''}}>
-                                {{$nombre}}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+            <div class="offset-sm-3 col-sm-3 form-check">
+                <input type="checkbox" class="form-check-input" name="estado" id="estado" value="{{isset($data) ? ($data->usuario->estado) : 0}}" @if (isset($data))  @if ($data->usuario->estado == 1) checked @endif @endif>
+                <label for="form-check-label" for="estado">Estado</label>
             </div>
         </div>
     </div>

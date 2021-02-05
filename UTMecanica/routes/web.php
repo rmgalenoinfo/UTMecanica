@@ -62,7 +62,7 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     Route::delete('asignar_menu/{subMenusId}/{rolesId}/eliminar', [SubMenuRolController::class, 'destroy'])->name('asignar_menu.eliminar');
     /* Fin rutas del asignar menú */
 
-    /*Inicio rutas del rol */
+    /*Inicio rutas del estudiantes */
     Route::get('estudiantes', [EstudianteController::class, 'index'])->name('estudiantes');
     Route::get('estudiantes/crear', [EstudianteController::class, 'crear'])->name('estudiantes.crear');
     Route::get('estudiantes/{id}/ficha', [EstudianteController::class, 'ficha'])->name('estudiantes.ficha');
@@ -70,6 +70,16 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     Route::post('estudiantes', [EstudianteController::class, 'guardar'])->name('estudiantes.guardar');
     Route::put('estudiantes/{id}', [EstudianteController::class, 'update'])->name('estudiantes.update');
     Route::delete('estudiantes/{id}/eliminar', [EstudianteController::class, 'destroy'])->name('estudiantes.eliminar');
-    /*Fin rutas del rol*/
+    /*Fin rutas del estudiantes*/
+
+    /*Inicio rutas del estudiantes */
+    Route::get('docentes', [DocenteController::class, 'index'])->name('docentes');
+    Route::get('docentes/crear', [DocenteController::class, 'crear'])->name('docentes.crear');
+    Route::get('docentes/{id}/ficha', [DocenteController::class, 'ficha'])->name('docentes.ficha');
+    Route::get('docentes/{id}/edit', [DocenteController::class, 'edit'])->name('docentes.edit');
+    Route::post('docentes', [DocenteController::class, 'guardar'])->name('docentes.guardar');
+    Route::put('docentes/{id}', [DocenteController::class, 'update'])->name('docentes.update');
+    Route::delete('docentes/{id}/eliminar', [DocenteController::class, 'destroy'])->name('docentes.eliminar');
+    /*Fin rutas del estudiantes*/
 
 });

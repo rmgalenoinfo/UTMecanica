@@ -29,4 +29,21 @@
 @stop
 
 @section('js')
+    <script>
+        $('#egresado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+        $('#graduado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+        $('#rechazado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+        $('#habilitado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+        $('#estado').on('change', function(){
+            this.value = this.checked ? '1' : '0';
+        }).change();
+    </script>
 @stop
