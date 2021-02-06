@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo extends Model
+class EstadoTema extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
-    public function tema() {
-        return $this->hasMany(Tema::class,'tipos_id');
+    public function estudianteTema() {
+        return $this->hasMany(EstudianteTema::class,'estado_tema_id');
     }
+
 }

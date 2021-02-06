@@ -16,4 +16,12 @@ class Docente extends Model
         return $this->belongsTo(Usuario::class);
     }
 
+    public function tema() {
+        return $this->hasMany(Tema::class,'docentes_id');
+    }
+
+    public function estudianteTema() {
+        return $this->hasMany(EstudianteTema::class,'docentes_id');
+    }
+
 }

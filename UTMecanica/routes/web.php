@@ -6,6 +6,10 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SubMenuController;
 use App\Http\Controllers\SubMenuRolController;
+use App\Http\Controllers\TemaController;
+use App\Http\Controllers\TipoController;
+use App\Models\EstadoTema;
+use App\Models\EstudianteTema;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,7 +76,7 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     Route::delete('estudiantes/{id}/eliminar', [EstudianteController::class, 'destroy'])->name('estudiantes.eliminar');
     /*Fin rutas del estudiantes*/
 
-    /*Inicio rutas del estudiantes */
+    /*Inicio rutas del docentes */
     Route::get('docentes', [DocenteController::class, 'index'])->name('docentes');
     Route::get('docentes/crear', [DocenteController::class, 'crear'])->name('docentes.crear');
     Route::get('docentes/{id}/ficha', [DocenteController::class, 'ficha'])->name('docentes.ficha');
@@ -80,6 +84,42 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     Route::post('docentes', [DocenteController::class, 'guardar'])->name('docentes.guardar');
     Route::put('docentes/{id}', [DocenteController::class, 'update'])->name('docentes.update');
     Route::delete('docentes/{id}/eliminar', [DocenteController::class, 'destroy'])->name('docentes.eliminar');
-    /*Fin rutas del estudiantes*/
+    /*Fin rutas del docentes*/
+
+    /*Inicio rutas del estados */
+    Route::get('estados', [EstadoTema::class, 'index'])->name('estados');
+    Route::get('estados/crear', [EstadoTema::class, 'crear'])->name('estados.crear');
+    Route::get('estados/{id}/edit', [EstadoTema::class, 'edit'])->name('estados.edit');
+    Route::post('estados', [EstadoTema::class, 'guardar'])->name('estados.guardar');
+    Route::put('estados/{id}', [EstadoTema::class, 'update'])->name('estados.update');
+    Route::delete('estados/{id}/eliminar', [EstadoTema::class, 'destroy'])->name('estados.eliminar');
+    /*Fin rutas del estados */
+
+    /*Inicio rutas del tipos */
+    Route::get('tipos', [TipoController::class, 'index'])->name('tipos');
+    Route::get('tipos/crear', [TipoController::class, 'crear'])->name('tipos.crear');
+    Route::get('tipos/{id}/edit', [TipoController::class, 'edit'])->name('tipos.edit');
+    Route::post('tipos', [TipoController::class, 'guardar'])->name('tipos.guardar');
+    Route::put('tipos/{id}', [TipoController::class, 'update'])->name('tipos.update');
+    Route::delete('tipos/{id}/eliminar', [TipoController::class, 'destroy'])->name('tipos.eliminar');
+    /*Fin rutas del tipos */
+
+    /*Inicio rutas del temas */
+    Route::get('temas', [TemaController::class, 'index'])->name('temas');
+    Route::get('temas/crear', [TemaController::class, 'crear'])->name('temas.crear');
+    Route::get('temas/{id}/edit', [TemaController::class, 'edit'])->name('temas.edit');
+    Route::post('temas', [TemaController::class, 'guardar'])->name('temas.guardar');
+    Route::put('temas/{id}', [TemaController::class, 'update'])->name('temas.update');
+    Route::delete('temas/{id}/eliminar', [TemaController::class, 'destroy'])->name('temas.eliminar');
+    /*Fin rutas del temas */
+
+    /*Inicio rutas del estudiantes temas */
+    Route::get('estudiantes_temas', [EstudianteTema::class, 'index'])->name('estudiantes_temas');
+    Route::get('estudiantes_temas/crear', [EstudianteTema::class, 'crear'])->name('estudiantes_temas.crear');
+    Route::get('estudiantes_temas/{id}/edit', [EstudianteTema::class, 'edit'])->name('estudiantes_temas.edit');
+    Route::post('estudiantes_temas', [EstudianteTema::class, 'guardar'])->name('estudiantes_temas.guardar');
+    Route::put('estudiantes_temas/{id}', [EstudianteTema::class, 'update'])->name('estudiantes_temas.update');
+    Route::delete('estudiantes_temas/{id}/eliminar', [EstudianteTema::class, 'destroy'])->name('estudiantes_temas.eliminar');
+    /*Fin rutas del temas */
 
 });

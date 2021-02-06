@@ -9,4 +9,24 @@ class EstudianteTema extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    //relacion uno a muchos (inversa)
+    public function estudiante(){
+        return $this->belongsTo(Estudiante::class);
+    }
+
+    //relacion uno a muchos (inversa)
+    public function docente(){
+        return $this->belongsTo(Docente::class);
+    }
+
+    //relacion uno a muchos (inversa)
+    public function tema(){
+        return $this->belongsTo(Tema::class);
+    }
+
+    //relacion uno a muchos (inversa)
+    public function estadoTema(){
+        return $this->belongsTo(EstadoTema::class);
+    }
 }

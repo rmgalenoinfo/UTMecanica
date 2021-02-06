@@ -96,9 +96,9 @@
                 </div>
                 <div class="card-footer">
                     <!-- Botón que guarda la información en la base de datos -->
-                    <a class="btn btn-success" href="{{route("estudiantes.edit", $data->id)}}">Editar</a>
+                    <a class="btn btn-success" href="{{route("docentes.edit", $data->id)}}">Editar</a>
                     <!-- Botón que regresa al formulario de la tabla -->
-                    <a class="btn btn-default float-right" href="{{route("estudiantes")}}">Volver a Lista</a>
+                    <a class="btn btn-default float-right" href="{{route("docentes")}}">Volver a Lista</a>
                 </div>
             </div>
 

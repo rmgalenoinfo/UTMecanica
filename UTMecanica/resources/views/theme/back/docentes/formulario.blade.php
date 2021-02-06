@@ -85,7 +85,7 @@
                     <select name="roles_id" id="roles_id" class="form-control" required>
                         <option value="">Seleccione el Rol</option>
                         @foreach ($roles as $id=>$nombre)
-                            <option value="{{$id}}" {{isset($data) ? (($id == $data->roles_id->id) ? 'selected' : '') : ''}}>
+                            <option value="{{$id}}" {{isset($data) ? (($id == $data->usuario->roles_id) ? 'selected' : '') : ''}}>
                                 {{$nombre}}
                             </option>
                         @endforeach
