@@ -7,32 +7,30 @@
         <div class="col-md-12">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Roles del sistemas</h3>
-                    <a href="{{route("roles.crear")}}" class="btn btn-success float-right">Nuevo Rol</a>
+                    <h3 class="card-title">Estado de la Tesis</h3>
+                    <a href="{{route("estados.crear")}}" class="btn btn-success float-right">Nuevo Estado</a>
                 </div>
                 <div class="card-body">
                     <table id="datostabla" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nombre Rol</th>
-                                <th>Slug</th>
+                                <th>Estado</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $item)
+                            @foreach ($estados as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->nombre}}</td>
-                                    <td>{{$item->slug}}</td>
                                     <td>
-                                        <a href="{{route("roles.edit", $item->id)}}" class="btn btn-warning" title="Editar">
+                                        <a href="{{route("estados.edit", $item->id)}}" class="btn btn-warning" title="Editar">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <form action="{{route("roles.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
+                                        <form action="{{route("estados.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
                                             @csrf @method('delete')
-                                            <button href="roles" class="btn btn-danger m-1 boton-eliminar-menu" title="Eliminar">
+                                            <button href="estados" class="btn btn-danger m-1 boton-eliminar-menu" title="Eliminar">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
                                         </form>

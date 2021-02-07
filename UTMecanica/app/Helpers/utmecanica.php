@@ -9,4 +9,16 @@ if (!function_exists('isSuperAdmin')) {
         Log::info(Session::get('rol_slug') == 'administrador');
         return Session::get('rol_slug') == 'administrador';
     }
+
+    function crearMenu() {
+
+    }
+
+    function ingresarMenus() {
+
+    }
+
+    function ingresarSubMenus() {
+
+    }
 }

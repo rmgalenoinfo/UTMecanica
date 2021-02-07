@@ -20,18 +20,18 @@
                 </div>
                 <!-- Fin Header -->
                 <!-- Inicio Formulario -->
-                <form action="{{route("sub_menu.guardar")}}" id="form-general" method="POST">
+                <form action="{{route("temas.guardar")}}" id="form-general" method="POST">
 
                     @csrf <!-- Genera el tocken de para el ingreso de datos -->
                     <div class="card-body">
                         <!-- Trae los componentes de otro formulario-->
-                        @include('theme.back.administracion.formulario_sub_menu')
+                        @include('theme.back.temas.formulario')
                     </div>
                     <div class="card-footer">
                         <!-- Botón que guarda la información en la base de datos -->
                         <button type="submit" class="btn btn-primary">Grabar</button>
                         <!-- Botón que regresa al formulario de la tabla -->
-                        <a class="btn btn-default float-right" href="{{route("sub_menu")}}">Volver a Lista</a>
+                        <a class="btn btn-default float-right" href="{{route("temas")}}">Volver a Lista</a>
                     </div>
                 </form>
                 <!-- Fin formulario -->

@@ -14,4 +14,13 @@ class SubMenuRol extends Model
     use HasFactory;
     protected $table = 'sub_menus_roles';
     protected $guarded = [];
+
+    private function crearMenu() {
+
+    }
+
+    private function crearSubMenus() {
+
+    }
+
 }

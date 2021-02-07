@@ -13,10 +13,10 @@
                 </div>
                 <!-- Fin Header -->
                 <!-- Inicio Formulario -->
-                <form action="{{route("sub_menu.update", $data->id)}}" id="form-general" method="POST">
+                <form action="{{route("temas.update", $data->id)}}" id="form-general" method="POST">
                     @csrf @method('put')
                     <div class="card-body">
-                        @include('theme.back.administracion.formulario_sub_menu')
+                        @include('theme.back.temas.formulario')
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Grabar</button>

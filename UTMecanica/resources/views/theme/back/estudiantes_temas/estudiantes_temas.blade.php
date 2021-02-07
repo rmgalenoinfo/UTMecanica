@@ -12,9 +12,9 @@
                 <!-- Título del cuadro tipo tarjeta -->
                 <div class="card-header">
                     <!--Título de la tarjeta -->
-                    <h3 class="card-title">Submenús del sistemas</h3>
+                    <h3 class="card-title">Asignaciones de temas a estudiantes</h3>
                     <!--Botón para ir al formaulario para ingresar nuevos datos en la base de datos-->
-                    <a href="{{route("asignar_menu.crear")}}" class="btn btn-success float-right">Agregar Menu Rol</a>
+                    <a href="{{route("estudiantes_temas.crear")}}" class="btn btn-success float-right">Asignar Tema</a>
                 </div>
                 <div class="card-body">
                     <!-- Tabla con el contenido de los datos de la base de datos -->
@@ -22,22 +22,30 @@
                         <!--Títulos superior de los campos contiene las tablas de la base de datos-->
                         <thead>
                             <tr>
-                                <th>Menu</th>
-                                <th>Submenú</th>
-                                <th>Rol</th>
+                                <th>#</th>
+                                <th>Estudiante</th>
+                                <th>Docente</th>
+                                <th>Tema</th>
+                                <th>Estado</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- Mustra la información de una tabla especifica de una base de datos -->
-                            @foreach ($subMenusRol as $item)
+                            @foreach ($estudiantesTemas as $item)
                                 <tr>
-                                    <td>{{$item->menu_nombre}}</td>
-                                    <td>{{$item->sub_menu_nombre}}</td>
-                                    <td>{{$item->nombre}}</td>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->apellido_estudiante}}&nbsp;{{$item->nombre_estudiante}}</td>
+                                    <td>{{$item->apellido_docente}}&nbsp;{{$item->nombre_docente}}</td>
+                                    <td>{{$item->titulo}}</td>
+                                    <td>{{$item->estado_tema}}</td>
                                     <td>
+                                        <!-- Se dirige al formulario para editar información de una tabla especifica de la base de datos -->
+                                        <a href="{{route("estudiantes_temas.edit", $item->id)}}" class="btn btn-warning" title="Editar">
+                                            <i class="far fa-edit"></i>
+                                        </a>
                                         <!-- Formulario para eliminar información de especifica de una tabla de la base de datos -->
-                                        <form action="{{route("asignar_menu.eliminar",['subMenusId'=>$item->sub_menus_id, 'rolesId'=>$item->roles_id])}}"  class="form-eliminar-menu d-inline" method="POST">
+                                        <form action="{{route("estudiantes_temas.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
                                             @csrf @method('delete')
                                             <button href="menu" title="Eliminar" class="btn btn-danger m-1 boton-eliminar-menu">
                                                 <i class="far fa-trash-alt"></i>
@@ -67,7 +75,7 @@
                 </div>
                 <!--Mensaje del para confirmar la eliminación de la información de la base de datos -->
                 <div class="modal-body">
-                    ¿Seguro desea eliminar este Menú Rol?
+                    ¿Seguro desea eliminar esta Asignación?
                 </div>
                 <div class="modal-footer">
                     <!-- Botón que cancela la eliminación de la información de la base de datos -->

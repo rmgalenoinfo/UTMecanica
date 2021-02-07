@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Backend\ValidacionEstadoTema;
 use App\Models\EstadoTema;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class EstadoTemaController extends Controller
      */
     public function index()
     {
-        //
+        $estados = EstadoTema::all();
+        return view('theme.back.tipo_temas.estado_temas', compact('estados'));
     }
 
     /**
@@ -22,9 +24,9 @@ class EstadoTemaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        return view('theme.back.estado_temas.grabar');
     }
 
     /**
@@ -33,9 +35,11 @@ class EstadoTemaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(ValidacionEstadoTema $request)
     {
-        //
+        $validado = $request->validated();
+        EstadoTema::create($validado);
+        return redirect()->route('estados', )->with('mensaje', 'Guardado Correctamente');
     }
 
     /**
@@ -52,34 +56,38 @@ class EstadoTemaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\EstadoTema  $estadoTema
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(EstadoTema $estadoTema)
+    public function edit($id)
     {
-        //
+        $data = EstadoTema::findOrFail($id);
+        return view('theme.back.estado_temas.editar', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EstadoTema  $estadoTema
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EstadoTema $estadoTema)
+    public function update(ValidacionEstadoTema $request, $id)
     {
-        //
+        $validado = $request->validated();
+        EstadoTema::findOrFail($id) ->update($validado);
+        return redirect()->route('estados', )->with('mensaje', 'Actualizado Correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EstadoTema  $estadoTema
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EstadoTema $estadoTema)
+    public function destroy($id)
     {
-        //
+        EstadoTema::destroy($id);
+        return redirect()->route('estados', )->with('mensaje', 'Eliminado Correctamente');
     }
 }

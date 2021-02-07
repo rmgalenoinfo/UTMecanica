@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Backend\ValidacionEstudianteTema;
+use App\Models\Docente;
+use App\Models\EstadoTema;
 use App\Models\EstudianteTema;
+use App\Models\Tema;
 use Illuminate\Http\Request;
 
 class EstudianteTemaController extends Controller
@@ -14,7 +18,10 @@ class EstudianteTemaController extends Controller
      */
     public function index()
     {
-        //
+        $estudiantesTemas = EstudianteTema::with('estudiante')->with('docente')->with('tema')->with('estadoTema')
+                                ->select('estudiantes_temas.id','nombre_estudiante', 'apellido_estudiante',
+                                'nombre_docente', 'apellido_docente', 'titulo', 'estado_tema')->get();
+        return view('theme.back.estudiantes_temas.estudiantes_temas', compact('estudiantesTemas'));
     }
 
     /**
@@ -22,9 +29,13 @@ class EstudianteTemaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        $estudiantes = Docente::orderBy('id')->select(['id', 'apellido_estudiante', 'nombre_estudiante'])->get();
+        $docentes = Docente::orderBy('id')->select(['id', 'apellido_docente', 'nombre_docente'])->get();
+        $estados= EstadoTema::orderBy('id')->pluck('titulo', 'id')->toArray();
+        $temas= Tema::orderBy('id')->pluck('estado_tema', 'id')->toArray();
+        return view('theme.back.estudiantes_temas.grabar', compact('estudiantes', 'docentes', 'estados', 'temas'));
     }
 
     /**
@@ -33,9 +44,11 @@ class EstudianteTemaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(ValidacionEstudianteTema $request)
     {
-        //
+        $validado = $request->validated();
+        EstudianteTema::create($validado);
+        return redirect()->route('estudiantes_temas')->with('mensaje', 'Guardado Correctamente');
     }
 
     /**
@@ -52,34 +65,42 @@ class EstudianteTemaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\EstudianteTema  $estudianteTema
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(EstudianteTema $estudianteTema)
+    public function edit($id)
     {
-        //
+        $data = EstudianteTema::findOrFail($id);
+        $estudiantes = Docente::orderBy('id')->select(['id', 'apellido_estudiante', 'nombre_estudiante'])->get();
+        $docentes = Docente::orderBy('id')->select(['id', 'apellido_docente', 'nombre_docente'])->get();
+        $estados= EstadoTema::orderBy('id')->pluck('titulo', 'id')->toArray();
+        $temas= Tema::orderBy('id')->pluck('estado_tema', 'id')->toArray();
+        return view('theme.back.estudiantes_temas.editar', compact('data', 'estudiantes', 'docentes', 'estados', 'temas'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EstudianteTema  $estudianteTema
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EstudianteTema $estudianteTema)
+    public function update(ValidacionEstudianteTema $request, $id)
     {
-        //
+        $validado = $request->validated();
+        EstudianteTema::findOrFail($id)->update($validado);
+        return redirect()->route('estudiantes_temas')->with('mensaje', 'Actualizado Correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EstudianteTema  $estudianteTema
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EstudianteTema $estudianteTema)
+    public function destroy($id)
     {
-        //
+        EstudianteTema::destroy($id);
+        return redirect()->route('estudiantes_temas')->with('mensaje', 'Eliminado Correctamente');
     }
 }

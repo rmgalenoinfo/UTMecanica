@@ -17,18 +17,18 @@
             <div class="card card-primary">
                 <!-- Titulo Header -->
                 <div class="card-header">
-                    <h3 class="card-title">Editar Rol</h3>
+                    <h3 class="card-title">Editar Tipos de Tesis</h3>
                 </div>
                 <!-- Fin Header -->
                 <!-- Inicio Formulario -->
-                <form action="{{route("roles.update", $data->id)}}" id="form-general" method="POST">
+                <form action="{{route("tipos.update", $data->id)}}" id="form-general" method="POST">
                     @csrf @method('put')
                     <div class="card-body">
-                        @include('theme.back.roles.formulario_rol')
+                        @include('theme.back.tipo_temas.formulario')
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Grabar</button>
-                        <a class="btn btn-default float-right" href="{{route("roles")}}">Cancelar</a>
+                        <a class="btn btn-default float-right" href="{{route("tipos")}}">Volver a Lista</a>
                     </div>
                 </form>
             </div>

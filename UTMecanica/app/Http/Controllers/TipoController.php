@@ -37,7 +37,9 @@ class TipoController extends Controller
      */
     public function guardar(ValidacionTipoTemas $request)
     {
-
+        $validado = $request->validated();
+        Tipo::create($validado);
+        return redirect()->route('tipos', )->with('mensaje', 'Guardado Correctamente');
     }
 
     /**
@@ -59,7 +61,8 @@ class TipoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Tipo::findOrFail($id);
+        return view('theme.back.tipo_temas.editar', compact('data'));
     }
 
     /**
@@ -71,7 +74,9 @@ class TipoController extends Controller
      */
     public function update(ValidacionTipoTemas $request, $id)
     {
-        //
+        $validado = $request->validated();
+        Tipo::findOrFail($id)->update($validado);
+        return redirect()->route('tipos', )->with('mensaje', 'Actualizado Correctamente');
     }
 
     /**
@@ -82,6 +87,7 @@ class TipoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tipo::destroy($id);
+        return redirect()->route('tipos', )->with('mensaje', 'Eliminado Correctamente');
     }
 }

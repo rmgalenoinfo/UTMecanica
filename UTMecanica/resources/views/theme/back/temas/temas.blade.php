@@ -23,31 +23,30 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Título</th>
                                 <th>Descripción</th>
-                                <th>Nombre Submenú</th>
-                                <th>Icono</th>
-                                <th>Rutal URL</th>
-                                <th>Menu</th>
+                                <th>Fecha Registro</th>
+                                <th>Habilitado</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- Mustra la información de una tabla especifica de una base de datos -->
-                            @foreach ($subMenus as $item)
+                            @foreach ($temas as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->descripcion}}</td>
-                                    <td>{{$item->sub_menu_nombre}}</td>
-                                    <td><i class="{{$item->icono}}"></td>
-                                    <td>{{$item->url}}</td>
-                                    <td>{{$item->menu_nombre}}</td>
+                                    <td>{{$item->titulo}}</td>
+                                    <td>{{$item->decripcion}}</td>
+                                    <td>{{$item->fecha_registro}}</td>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input" name="habilitado" id="habilitado" value="{{$item->habilitado}}" @if ($item->habilitado == 1) checked @endif disabled>
                                     <td>
                                         <!-- Se dirige al formulario para editar información de una tabla especifica de la base de datos -->
-                                        <a href="{{route("sub_menu.edit", $item->id)}}" class="btn btn-warning" title="Editar">
+                                        <a href="{{route("temas.edit", $item->id)}}" class="btn btn-warning" title="Editar">
                                             <i class="far fa-edit"></i>
                                         </a>
                                         <!-- Formulario para eliminar información de especifica de una tabla de la base de datos -->
-                                        <form action="{{route("sub_menu.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
+                                        <form action="{{route("temas.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
                                             @csrf @method('delete')
                                             <button href="menu" title="Eliminar" class="btn btn-danger m-1 boton-eliminar-menu">
                                                 <i class="far fa-trash-alt"></i>

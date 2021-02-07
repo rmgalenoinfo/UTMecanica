@@ -53,7 +53,7 @@
                                         <!-- Formulario para eliminar información de especifica de una tabla de la base de datos -->
                                         <form action="{{route("docentes.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
                                             @csrf @method('delete')
-                                            <button href="menu" title="Eliminar" class="btn btn-danger boton-eliminar-menu">
+                                            <button href="docentes" title="Eliminar" class="btn btn-danger boton-eliminar-menu">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
                                         </form>

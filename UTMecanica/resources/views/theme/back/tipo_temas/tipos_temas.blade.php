@@ -7,32 +7,30 @@
         <div class="col-md-12">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Roles del sistemas</h3>
-                    <a href="{{route("roles.crear")}}" class="btn btn-success float-right">Nuevo Rol</a>
+                    <h3 class="card-title">Tipos de Tesis</h3>
+                    <a href="{{route("roles.crear")}}" class="btn btn-success float-right">Nuevo Tipo</a>
                 </div>
                 <div class="card-body">
                     <table id="datostabla" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nombre Rol</th>
-                                <th>Slug</th>
+                                <th>Tipo</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $item)
+                            @foreach ($tipos as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->nombre}}</td>
-                                    <td>{{$item->slug}}</td>
+                                    <td>{{$item->tipo_tema}}</td>
                                     <td>
-                                        <a href="{{route("roles.edit", $item->id)}}" class="btn btn-warning" title="Editar">
+                                        <a href="{{route("tipos.edit", $item->id)}}" class="btn btn-warning" title="Editar">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <form action="{{route("roles.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
+                                        <form action="{{route("tipos.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
                                             @csrf @method('delete')
-                                            <button href="roles" class="btn btn-danger m-1 boton-eliminar-menu" title="Eliminar">
+                                            <button href="tipos" class="btn btn-danger m-1 boton-eliminar-menu" title="Eliminar">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
                                         </form>
@@ -59,7 +57,7 @@
                 </div>
                 <!--Mensaje del para confirmar la eliminación de la información de la base de datos -->
                 <div class="modal-body">
-                    ¿Seguro desea eliminar este Rol?
+                    ¿Seguro desea eliminar este Tipo Tema?
                 </div>
                 <div class="modal-footer">
                     <!-- Botón que cancela la eliminación de la información de la base de datos -->

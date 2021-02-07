@@ -24,11 +24,11 @@ class ValidacionTema extends FormRequest
     public function rules()
     {
         return [
-            'docentes_id' => 'required',
+            'docentes_id' => 'nullable',
             'tipos_id'=>'required',
             'titulo'=>'required|max:150',
             'decripcion'=>'required',
-            'fecha_registro'=>'required',
+            'fecha_registro'=>'date',
             'habilitado'=>'boolean'
         ];
     }
