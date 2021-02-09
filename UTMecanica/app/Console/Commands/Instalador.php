@@ -74,10 +74,21 @@ class Instalador extends Command
     private function crearMenu()
     {
         return Menu::create([
-            'descripcion' => 'Menu de pagina de inicio',
-            'menu_nombre' => 'Inicio',
-            'icono' => 'icono',
-            'url' => 'ruta Inicio'
+            'descripcion' => 'Menú Administrador',
+            'menu_nombre' => 'Administrar',
+            'icono' => 'fas fa-tools'
+        ],[
+            'descripcion' => 'Menú Gestionar',
+            'menu_nombre' => 'Gestión',
+            'icono' => 'fas fa-users-cog'
+        ],[
+            'descripcion' => 'Menú Usuarios',
+            'menu_nombre' => 'Usuarios',
+            'icono' => 'fas fa-users'
+        ],[
+            'descripcion' => 'Impresión de reportes',
+            'menu_nombre' => 'Reportes',
+            'icono' => 'fas fa-chart-bar'
         ]);
     }
 
@@ -86,9 +97,33 @@ class Instalador extends Command
         return SubMenu::create([
             'menus_id' => 1,
             'descripcion'=> 'Menus principal',
-            'sub_menu_nombre'=> 'Menus',
-            'icono' => 'icono menu',
-            'url' => 'ruta_menu'
+            'sub_menu_nombre'=> 'Menús',
+            'icono' => 'fas fa-bars',
+            'url' => 'administrar/menu'
+        ],[
+            'menus_id' => 1,
+            'descripcion'=> 'Creación de los menús del sistema',
+            'sub_menu_nombre'=> 'Submenús',
+            'icono' => 'fas fa-stream',
+            'url' => 'administrar/sub_menu'
+        ],[
+            'menus_id' => 1,
+            'descripcion'=> 'Crear los roles',
+            'sub_menu_nombre'=> 'Roles',
+            'icono' => 'fas fa-user-lock',
+            'url' => 'administrar/roles'
+        ],[
+            'menus_id' => 1,
+            'descripcion'=> 'Asigna al submenú al rol del usuario',
+            'sub_menu_nombre'=> 'Asignar Menú',
+            'icono' => 'far fa-address-card',
+            'url' => 'administrar/asignar_menu'
+        ],[
+            'menus_id' => 2,
+            'descripcion'=> 'Agregar los tipos de temas de tesis',
+            'sub_menu_nombre'=> 'Tipos temas',
+            'icono' => 'fab fa-tumblr-square',
+            'url' => 'administrar/tipo_tema'
         ]);
     }
 
