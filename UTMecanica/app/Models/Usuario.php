@@ -26,7 +26,7 @@ class Usuario extends Authenticatable
      *
      * @var array
      */
-    protected $vasts = [
+    protected $casts = [
         'email_verified_at' => 'datetime'
     ];
 

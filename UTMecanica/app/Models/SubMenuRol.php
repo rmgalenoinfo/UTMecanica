@@ -20,16 +20,16 @@ class SubMenuRol extends Model
         $menus = DB::table('menus')->select(['menus.id','menus.menu_nombre','menus.icono'])
         ->join('sub_menus','menus.id','=','sub_menus.menus_id')
         ->join('sub_menus_roles','sub_menus.id','=','sub_menus_roles.sub_menus_id')
-        ->where('sub_menus_roles.sub_menus_id','=',$idRol)
+        ->where('sub_menus_roles.roles_id','=',$idRol)
         ->groupBy('menus.menu_nombre')->orderBy('menus.id')->get();
         return $menus;
     }
 
     private function buscarSubMenus ($idRol) {
-        $subMenus = DB::table('sub_menus_roles')
-        ->select(['sub_menus_roles.menus_id, sub_menus_roles.sub_menu_nombre','sub_menus_roles.icono','sub_menus_roles.url'])
+        $subMenus = DB::table('sub_menus')
+        ->select(['sub_menus.menus_id', 'sub_menus.sub_menu_nombre','sub_menus.icono','sub_menus.url'])
         ->join('sub_menus_roles','sub_menus.id','=','sub_menus_roles.sub_menus_id')
-        ->where('sub_menus_roles.sub_menus_id','=',$idRol)->orderBy('sub_menus_roles.menus_id')->get();
+        ->where('sub_menus_roles.roles_id','=',$idRol)->orderBy('sub_menus.menus_id')->get();
         return $subMenus;
     }
 
@@ -55,18 +55,18 @@ class SubMenuRol extends Model
 
         $menus = $this->buscarMenus($idRol);
         $subMenus = $this->buscarSubMenus($idRol);
-
-        for ($i = 0; $i<count($menus); ++$i) {
+        //dd($menus);
+        foreach ($menus as $menu) {
             $subMenuD = [];
-            for ($j = 0; $j<count($subMenus);++$i) {
-                if ($subMenus[$j]['menus_id'] == $menus[$i]['id']) {
-                    $subMenu = $this->crearSubMenus($subMenus[$j]['menus_id']);
+            foreach ($subMenus as $subMenu) {
+                if ($subMenu->menus_id == $menu->id) {
+                    $subMenu = $this->crearSubMenus($subMenu);
                     array_push($subMenuD, $subMenu);
                 }
             }
             $menuD = [
-                'text'    => $menus[$i]['menu_nombre'],
-                'icon'    => $menus[$i]['icono'],
+                'text'    => $menu->menu_nombre,
+                'icon'    => $menu->icono,
                 'submenu' =>  $subMenuD
             ];
             array_push($menuDinamico, $menuD);
@@ -76,9 +76,9 @@ class SubMenuRol extends Model
 
     private function crearSubMenus ($subMenus) {
         $subMenu = [
-            'text' => $subMenus['sub_menu_nombre'],
-            'icon' => $subMenus['icono'],
-            'url' => $subMenus['url']
+            'text' => $subMenus->sub_menu_nombre,
+            'icon' => $subMenus->icono,
+            'url' => $subMenus->url
         ];
         return $subMenu;
     }

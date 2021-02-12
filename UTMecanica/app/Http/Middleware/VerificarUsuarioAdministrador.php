@@ -16,8 +16,9 @@ class VerificarUsuarioAdministrador
      */
     public function handle(Request $request, Closure $next)
     {
+       // dd(isSuperAdmin());
         if (isSuperAdmin())
             return $next($request);
-        return redirect('/');
+        return redirect('/Inicio');
     }
 }

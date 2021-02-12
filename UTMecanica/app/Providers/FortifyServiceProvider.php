@@ -8,12 +8,11 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Models\Usuario;
 use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -45,10 +44,16 @@ class FortifyServiceProvider extends ServiceProvider
 
             if ($usuario && Hash::check($request->password, $usuario->password)) {
                 $roles = $usuario->roles()->first();
-                if ($roles) {
-                    $request->session()->put('rol_slug', $roles->slug);
-                    $request->session()->put('rol_id', $roles->id);
-                    return $usuario;
+                if ($usuario->estado) {
+                    $fechaActual = strtotime(date('d-m-Y', time()));
+                    $fechaCaducidad = date ('d-m-Y', strtotime($usuario->fecha_caducidad));
+                    if ($fechaActual > $fechaCaducidad) {
+                        if ($roles) {
+                            $_SESSION['rol_slug'] = $roles->slug;
+                            $_SESSION['rol_id'] = $roles->id;
+                            return $usuario;
+                        }
+                    }
                 }
                 return false;
             }

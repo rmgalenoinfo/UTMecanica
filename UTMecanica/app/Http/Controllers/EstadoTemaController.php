@@ -16,7 +16,7 @@ class EstadoTemaController extends Controller
     public function index()
     {
         $estados = EstadoTema::all();
-        return view('theme.back.tipo_temas.estado_temas', compact('estados'));
+        return view('theme.back.estado_temas.estado_temas', compact('estados'));
     }
 
     /**

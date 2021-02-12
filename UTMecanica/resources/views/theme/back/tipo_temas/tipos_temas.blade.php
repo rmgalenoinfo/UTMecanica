@@ -8,7 +8,7 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Tipos de Tesis</h3>
-                    <a href="{{route("roles.crear")}}" class="btn btn-success float-right">Nuevo Tipo</a>
+                    <a href="{{route("tipos.crear")}}" class="btn btn-success float-right">Nuevo Tipo</a>
                 </div>
                 <div class="card-body">
                     <table id="datostabla" class="table table-bordered table-hover">

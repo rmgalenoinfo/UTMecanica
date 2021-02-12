@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\EstadoTemaController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\EstudianteTemaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SubMenuController;
 use App\Http\Controllers\SubMenuRolController;
 use App\Http\Controllers\TemaController;
 use App\Http\Controllers\TipoController;
-use App\Models\EstadoTema;
-use App\Models\EstudianteTema;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,12 +87,12 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     /*Fin rutas del docentes*/
 
     /*Inicio rutas del estados */
-    Route::get('estados', [EstadoTema::class, 'index'])->name('estados');
-    Route::get('estados/crear', [EstadoTema::class, 'crear'])->name('estados.crear');
-    Route::get('estados/{id}/edit', [EstadoTema::class, 'edit'])->name('estados.edit');
-    Route::post('estados', [EstadoTema::class, 'guardar'])->name('estados.guardar');
-    Route::put('estados/{id}', [EstadoTema::class, 'update'])->name('estados.update');
-    Route::delete('estados/{id}/eliminar', [EstadoTema::class, 'destroy'])->name('estados.eliminar');
+    Route::get('estados', [EstadoTemaController::class, 'index'])->name('estados');
+    Route::get('estados/crear', [EstadoTemaController::class, 'crear'])->name('estados.crear');
+    Route::get('estados/{id}/edit', [EstadoTemaController::class, 'edit'])->name('estados.edit');
+    Route::post('estados', [EstadoTemaController::class, 'guardar'])->name('estados.guardar');
+    Route::put('estados/{id}', [EstadoTemaController::class, 'update'])->name('estados.update');
+    Route::delete('estados/{id}/eliminar', [EstadoTemaController::class, 'destroy'])->name('estados.eliminar');
     /*Fin rutas del estados */
 
     /*Inicio rutas del tipos */
@@ -114,12 +114,12 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
     /*Fin rutas del temas */
 
     /*Inicio rutas del estudiantes temas */
-    Route::get('estudiantes_temas', [EstudianteTema::class, 'index'])->name('estudiantes_temas');
-    Route::get('estudiantes_temas/crear', [EstudianteTema::class, 'crear'])->name('estudiantes_temas.crear');
-    Route::get('estudiantes_temas/{id}/edit', [EstudianteTema::class, 'edit'])->name('estudiantes_temas.edit');
-    Route::post('estudiantes_temas', [EstudianteTema::class, 'guardar'])->name('estudiantes_temas.guardar');
-    Route::put('estudiantes_temas/{id}', [EstudianteTema::class, 'update'])->name('estudiantes_temas.update');
-    Route::delete('estudiantes_temas/{id}/eliminar', [EstudianteTema::class, 'destroy'])->name('estudiantes_temas.eliminar');
+    Route::get('estudiantes_temas', [EstudianteTemaController::class, 'index'])->name('estudiantes_temas');
+    Route::get('estudiantes_temas/crear', [EstudianteTemaController::class, 'crear'])->name('estudiantes_temas.crear');
+    Route::get('estudiantes_temas/{id}/edit', [EstudianteTemaController::class, 'edit'])->name('estudiantes_temas.edit');
+    Route::post('estudiantes_temas', [EstudianteTemaController::class, 'guardar'])->name('estudiantes_temas.guardar');
+    Route::put('estudiantes_temas/{id}', [EstudianteTemaController::class, 'update'])->name('estudiantes_temas.update');
+    Route::delete('estudiantes_temas/{id}/eliminar', [EstudianteTemaController::class, 'destroy'])->name('estudiantes_temas.eliminar');
     /*Fin rutas del temas */
 
 });

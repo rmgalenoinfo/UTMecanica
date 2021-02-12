@@ -23,7 +23,7 @@
                             @foreach ($estados as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->nombre}}</td>
+                                    <td>{{$item->estado_tema}}</td>
                                     <td>
                                         <a href="{{route("estados.edit", $item->id)}}" class="btn btn-warning" title="Editar">
                                             <i class="far fa-edit"></i>

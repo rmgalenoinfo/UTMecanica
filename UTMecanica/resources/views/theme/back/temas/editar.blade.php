@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Grabar</button>
-                        <a class="btn btn-default float-right" href="{{route("sub_menu")}}">Volver a Lista</a>
+                        <a class="btn btn-default float-right" href="{{route("temas")}}">Volver a Lista</a>
                     </div>
                 </form>
             </div>
@@ -33,4 +33,21 @@
 @stop
 
 @section('js')
+<script>
+    $('#egresado').on('change', function(){
+        this.value = this.checked ? '1' : '0';
+    }).change();
+    $('#graduado').on('change', function(){
+        this.value = this.checked ? '1' : '0';
+    }).change();
+    $('#rechazado').on('change', function(){
+        this.value = this.checked ? '1' : '0';
+    }).change();
+    $('#habilitado').on('change', function(){
+        this.value = this.checked ? '1' : '0';
+    }).change();
+    $('#estado').on('change', function(){
+        this.value = this.checked ? '1' : '0';
+    }).change();
+</script>
 @stop

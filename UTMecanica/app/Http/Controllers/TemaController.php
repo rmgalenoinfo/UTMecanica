@@ -51,6 +51,7 @@ class TemaController extends Controller
             $habilitado = 0;
         }
         $fechaActual = date('Y-m-d');
+      //  dd($validado);
         Tema::create([
             'docentes_id' => $validado['docentes_id'],
             'tipos_id'=>$validado['tipos_id'],
@@ -59,7 +60,7 @@ class TemaController extends Controller
             'fecha_registro'=> $fechaActual,
             'habilitado'=> $habilitado
         ]);
-        redirect()->route('temas', )->with('mensaje', 'Guardado Correctamente');
+       return redirect()->route('temas')->with('mensaje', 'Guardado Correctamente');
     }
 
     /**
@@ -103,6 +104,7 @@ class TemaController extends Controller
         } catch (ErrorException $e) {
             $habilitado = 0;
         }
+        //dd($validado);
         Tema::findOrFail($id)->update([
             'docentes_id' => $validado['docentes_id'],
             'tipos_id'=>$validado['tipos_id'],
@@ -110,7 +112,7 @@ class TemaController extends Controller
             'decripcion'=> $validado['decripcion'],
             'habilitado'=> $habilitado
         ]);
-        redirect()->route('temas', )->with('mensaje', 'Actualizado Correctamente');
+        return redirect()->route('temas')->with('mensaje', 'Actualizado Correctamente');
     }
 
     /**
@@ -122,6 +124,6 @@ class TemaController extends Controller
     public function destroy($id)
     {
         Tema::destroy($id);
-        redirect()->route('temas', )->with('mensaje', 'Eliminado Correctamente');
+        return redirect()->route('temas')->with('mensaje', 'Eliminado Correctamente');
     }
 }

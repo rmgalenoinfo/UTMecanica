@@ -14,7 +14,7 @@
                     <!--Título de la tarjeta -->
                     <h3 class="card-title">Submenús del sistemas</h3>
                     <!--Botón para ir al formaulario para ingresar nuevos datos en la base de datos-->
-                    <a href="{{route("sub_menu.crear")}}" class="btn btn-success float-right">Nuevo Submenú</a>
+                    <a href="{{route("temas.crear")}}" class="btn btn-success float-right">Nuevo Submenú</a>
                 </div>
                 <div class="card-body">
                     <!-- Tabla con el contenido de los datos de la base de datos -->
@@ -39,7 +39,7 @@
                                     <td>{{$item->decripcion}}</td>
                                     <td>{{$item->fecha_registro}}</td>
                                     <td>
-                                        <input type="checkbox" class="form-check-input" name="habilitado" id="habilitado" value="{{$item->habilitado}}" @if ($item->habilitado == 1) checked @endif disabled>
+                                        <input type="checkbox" class="mx-auto" name="habilitado" id="habilitado" value="{{$item->habilitado}}" @if ($item->habilitado == 1) checked @endif disabled>
                                     <td>
                                         <!-- Se dirige al formulario para editar información de una tabla especifica de la base de datos -->
                                         <a href="{{route("temas.edit", $item->id)}}" class="btn btn-warning" title="Editar">

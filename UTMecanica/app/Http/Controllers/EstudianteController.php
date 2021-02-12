@@ -126,7 +126,7 @@ class EstudianteController extends Controller
     {
         $data = Estudiante::with('usuario')->findOrFail($id);
         $date = date('Y-m-d', strtotime($data->usuario->fecha_caducidad));
-        $usuario = $data -> usuario;
+        $usuario = $data->usuario;
         $usuario['fecha_caducidad'] = $date;
         $data['usuario'] = $usuario;
         return view('theme.back.estudiantes.ficha', compact('data'));

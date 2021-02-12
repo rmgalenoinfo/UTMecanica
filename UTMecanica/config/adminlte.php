@@ -222,8 +222,8 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/8.-Menu-Configuration
     |
     */
-    'menu' => getMenuDinamico(),
-    /*'menu' => [
+
+    'menu' => [
         [
             'text' => 'search',
             'search' => true,
@@ -266,7 +266,7 @@ return [
                 ]
             ]
         ]
-    ],*/
+    ],
 
     /*
     |--------------------------------------------------------------------------

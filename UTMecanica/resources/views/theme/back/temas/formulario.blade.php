@@ -14,10 +14,10 @@
 <div class="form-group row">
     <label for="url" class="col-sm-2 col-form-label requerido">Docentes</label>
     <div class="col-sm-10">
-        <select name="menus_id" id="menus_id" class="form-control" required>
+        <select name="docentes_id" id="docentes_id" class="form-control" required>
             <option value="">Seleccione el docente </option>
             @foreach ($docentes as $docente)
-                <option value="{{$docente->id}}" {{isset($data) ? (($docente->$id == $data->docentes_id) ? 'selected' : '') : ''}} >
+                <option value="{{$docente->id}}" {{isset($data) ? (($docente->id == $data->docentes_id) ? 'selected' : '') : ''}} >
                     {{$docente->apellido_docente}}&nbsp;{{$docente->nombre_docente}}
                 </option>
             @endforeach
@@ -28,9 +28,9 @@
 <div class="form-group row">
     <label for="url" class="col-sm-2 col-form-label requerido">Tipo</label>
     <div class="col-sm-10">
-        <select name="menus_id" id="menus_id" class="form-control" required>
+        <select name="tipos_id" id="tipos_id" class="form-control" required>
             <option value="">Seleccione el tipo </option>
-            @foreach ($tipo as $id=>$nombre)
+            @foreach ($tipos as $id=>$nombre)
                 <option value="{{$id}}" {{isset($data) ? (($id == $data->tipos_id) ? 'selected' : '') : ''}} >
                 {{$nombre}}
             </option>
