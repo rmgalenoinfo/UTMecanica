@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class VerificarUsuarioAdministrador
+class VerificarUsuarioEstudiante
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class VerificarUsuarioAdministrador
      */
     public function handle(Request $request, Closure $next)
     {
-        if (isSuperAdmin())
+        if (isEstudiante())
             return $next($request);
         return redirect()->route('/Inicio');
     }

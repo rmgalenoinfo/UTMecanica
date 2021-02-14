@@ -41,17 +41,19 @@
                                     <td>
                                         <input type="checkbox" class="mx-auto" name="habilitado" id="habilitado" value="{{$item->habilitado}}" @if ($item->habilitado == 1) checked @endif disabled>
                                     <td>
-                                        <!-- Se dirige al formulario para editar información de una tabla especifica de la base de datos -->
-                                        <a href="{{route("temas.edit", $item->id)}}" class="btn btn-warning" title="Editar">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <!-- Formulario para eliminar información de especifica de una tabla de la base de datos -->
-                                        <form action="{{route("temas.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
-                                            @csrf @method('delete')
-                                            <button href="menu" title="Eliminar" class="btn btn-danger m-1 boton-eliminar-menu">
-                                                <i class="far fa-trash-alt"></i>
-                                            </button>
-                                        </form>
+                                        @if (!$isEstudiate)
+                                            <!-- Se dirige al formulario para editar información de una tabla especifica de la base de datos -->
+                                            <a href="{{route("temas.edit", $item->id)}}" class="btn btn-warning" title="Editar">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+                                            <!-- Formulario para eliminar información de especifica de una tabla de la base de datos -->
+                                            <form action="{{route("temas.eliminar", $item->id)}}"  class="form-eliminar-menu d-inline" method="POST">
+                                                @csrf @method('delete')
+                                                <button href="menu" title="Eliminar" class="btn btn-danger m-1 boton-eliminar-menu">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

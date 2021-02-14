@@ -20,7 +20,8 @@ class TemaController extends Controller
     public function index()
     {
         $temas = Tema::all();
-        return view('theme.back.temas.temas', compact('temas'));
+        $isEstudiate = isEstudiante();
+        return view('theme.back.temas.temas', compact('temas', 'isEstudiate'));
     }
 
     /**
