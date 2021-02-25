@@ -125,10 +125,10 @@ Route::group(['prefix' => 'administrar', 'middleware' => ['auth', 'administrador
 
 });
 
-/* Rutas del menus del rol coordinador */
+/* Rutas del menus del rol coordinador
 Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'coordinador']], function() {
 
-    /*Inicio rutas del estudiantes */
+    /*Inicio rutas del estudiantes
     Route::get('estudiantes', [EstudianteController::class, 'index'])->name('estudiantes');
     Route::get('estudiantes/crear', [EstudianteController::class, 'crear'])->name('estudiantes.crear');
     Route::get('estudiantes/{id}/ficha', [EstudianteController::class, 'ficha'])->name('estudiantes.ficha');
@@ -138,7 +138,7 @@ Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'coordinador']],
     Route::delete('estudiantes/{id}/eliminar', [EstudianteController::class, 'destroy'])->name('estudiantes.eliminar');
     /*Fin rutas del estudiantes*/
 
-    /*Inicio rutas del docentes */
+    /*Inicio rutas del docentes
     Route::get('docentes', [DocenteController::class, 'index'])->name('docentes');
     Route::get('docentes/crear', [DocenteController::class, 'crear'])->name('docentes.crear');
     Route::get('docentes/{id}/ficha', [DocenteController::class, 'ficha'])->name('docentes.ficha');
@@ -146,27 +146,27 @@ Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'coordinador']],
     Route::post('docentes', [DocenteController::class, 'guardar'])->name('docentes.guardar');
     Route::put('docentes/{id}', [DocenteController::class, 'update'])->name('docentes.update');
     Route::delete('docentes/{id}/eliminar', [DocenteController::class, 'destroy'])->name('docentes.eliminar');
-    /*Fin rutas del docentes*/
+    /*Fin rutas del docentes
 
-    /*Inicio rutas del estados */
+    /*Inicio rutas del estados
     Route::get('estados', [EstadoTemaController::class, 'index'])->name('estados');
     Route::get('estados/crear', [EstadoTemaController::class, 'crear'])->name('estados.crear');
     Route::get('estados/{id}/edit', [EstadoTemaController::class, 'edit'])->name('estados.edit');
     Route::post('estados', [EstadoTemaController::class, 'guardar'])->name('estados.guardar');
     Route::put('estados/{id}', [EstadoTemaController::class, 'update'])->name('estados.update');
     Route::delete('estados/{id}/eliminar', [EstadoTemaController::class, 'destroy'])->name('estados.eliminar');
-    /*Fin rutas del estados */
+    /*Fin rutas del estados
 
-    /*Inicio rutas del tipos */
+    /*Inicio rutas del tipos
     Route::get('tipos', [TipoController::class, 'index'])->name('tipos');
     Route::get('tipos/crear', [TipoController::class, 'crear'])->name('tipos.crear');
     Route::get('tipos/{id}/edit', [TipoController::class, 'edit'])->name('tipos.edit');
     Route::post('tipos', [TipoController::class, 'guardar'])->name('tipos.guardar');
     Route::put('tipos/{id}', [TipoController::class, 'update'])->name('tipos.update');
     Route::delete('tipos/{id}/eliminar', [TipoController::class, 'destroy'])->name('tipos.eliminar');
-    /*Fin rutas del tipos */
+    /*Fin rutas del tipos
 
-    /*Inicio rutas del temas */
+    /*Inicio rutas del temas
     Route::get('temas', [TemaController::class, 'index'])->name('temas');
     Route::get('temas/crear', [TemaController::class, 'crear'])->name('temas.crear');
     Route::get('temas/{id}/edit', [TemaController::class, 'edit'])->name('temas.edit');
@@ -175,21 +175,21 @@ Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'coordinador']],
     Route::delete('temas/{id}/eliminar', [TemaController::class, 'destroy'])->name('temas.eliminar');
     /*Fin rutas del temas */
 
-    /*Inicio rutas del estudiantes temas */
+    /*Inicio rutas del estudiantes temas
     Route::get('estudiantes_temas', [EstudianteTemaController::class, 'index'])->name('estudiantes_temas');
     Route::get('estudiantes_temas/crear', [EstudianteTemaController::class, 'crear'])->name('estudiantes_temas.crear');
     Route::get('estudiantes_temas/{id}/edit', [EstudianteTemaController::class, 'edit'])->name('estudiantes_temas.edit');
     Route::post('estudiantes_temas', [EstudianteTemaController::class, 'guardar'])->name('estudiantes_temas.guardar');
     Route::put('estudiantes_temas/{id}', [EstudianteTemaController::class, 'update'])->name('estudiantes_temas.update');
     Route::delete('estudiantes_temas/{id}/eliminar', [EstudianteTemaController::class, 'destroy'])->name('estudiantes_temas.eliminar');
-    /*Fin rutas del temas */
+    /*Fin rutas del temas
 
 });
 
-/* Rutas del menus del rol docentes */
-Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'docentes']], function() {
+/* Rutas del menus del rol docentes
+Route::group(['prefix' => 'docente', 'middleware' => ['auth', 'docentes']], function() {
 
-    /*Inicio rutas del estudiantes */
+    /*Inicio rutas del estudiantes
     Route::get('estudiantes', [EstudianteController::class, 'index'])->name('estudiantes');
     Route::get('estudiantes/crear', [EstudianteController::class, 'crear'])->name('estudiantes.crear');
     Route::get('estudiantes/{id}/ficha', [EstudianteController::class, 'ficha'])->name('estudiantes.ficha');
@@ -197,9 +197,9 @@ Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'docentes']], fu
     Route::post('estudiantes', [EstudianteController::class, 'guardar'])->name('estudiantes.guardar');
     Route::put('estudiantes/{id}', [EstudianteController::class, 'update'])->name('estudiantes.update');
     Route::delete('estudiantes/{id}/eliminar', [EstudianteController::class, 'destroy'])->name('estudiantes.eliminar');
-    /*Fin rutas del estudiantes*/
+    /*Fin rutas del estudiantes
 
-    /*Inicio rutas del temas */
+    /*Inicio rutas del temas
     Route::get('temas', [TemaController::class, 'index'])->name('temas');
     Route::get('temas/crear', [TemaController::class, 'crear'])->name('temas.crear');
     Route::get('temas/{id}/edit', [TemaController::class, 'edit'])->name('temas.edit');
@@ -208,21 +208,21 @@ Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'docentes']], fu
     Route::delete('temas/{id}/eliminar', [TemaController::class, 'destroy'])->name('temas.eliminar');
     /*Fin rutas del temas */
 
-    /*Inicio rutas del estudiantes temas */
+    /*Inicio rutas del estudiantes temas
     Route::get('estudiantes_temas', [EstudianteTemaController::class, 'index'])->name('estudiantes_temas');
     Route::get('estudiantes_temas/crear', [EstudianteTemaController::class, 'crear'])->name('estudiantes_temas.crear');
     Route::get('estudiantes_temas/{id}/edit', [EstudianteTemaController::class, 'edit'])->name('estudiantes_temas.edit');
     Route::post('estudiantes_temas', [EstudianteTemaController::class, 'guardar'])->name('estudiantes_temas.guardar');
     Route::put('estudiantes_temas/{id}', [EstudianteTemaController::class, 'update'])->name('estudiantes_temas.update');
     Route::delete('estudiantes_temas/{id}/eliminar', [EstudianteTemaController::class, 'destroy'])->name('estudiantes_temas.eliminar');
-    /*Fin rutas del temas */
+    /*Fin rutas del temas
 
 });
 
-/* Rutas del menus del rol tutor */
-Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'tutor']], function() {
+/* Rutas del menus del rol tutor
+Route::group(['prefix' => 'tutores', 'middleware' => ['auth', 'tutor']], function() {
 
-    /*Inicio rutas del estudiantes */
+    /*Inicio rutas del estudiantes
     Route::get('estudiantes', [EstudianteController::class, 'index'])->name('estudiantes');
     Route::get('estudiantes/crear', [EstudianteController::class, 'crear'])->name('estudiantes.crear');
     Route::get('estudiantes/{id}/ficha', [EstudianteController::class, 'ficha'])->name('estudiantes.ficha');
@@ -230,9 +230,9 @@ Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'tutor']], funct
     Route::post('estudiantes', [EstudianteController::class, 'guardar'])->name('estudiantes.guardar');
     Route::put('estudiantes/{id}', [EstudianteController::class, 'update'])->name('estudiantes.update');
     Route::delete('estudiantes/{id}/eliminar', [EstudianteController::class, 'destroy'])->name('estudiantes.eliminar');
-    /*Fin rutas del estudiantes*/
+    /*Fin rutas del estudiantes
 
-    /*Inicio rutas del temas */
+    /*Inicio rutas del temas
     Route::get('temas', [TemaController::class, 'index'])->name('temas');
     Route::get('temas/crear', [TemaController::class, 'crear'])->name('temas.crear');
     Route::get('temas/{id}/edit', [TemaController::class, 'edit'])->name('temas.edit');
@@ -241,27 +241,27 @@ Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'tutor']], funct
     Route::delete('temas/{id}/eliminar', [TemaController::class, 'destroy'])->name('temas.eliminar');
     /*Fin rutas del temas */
 
-    /*Inicio rutas del estudiantes temas */
+    /*Inicio rutas del estudiantes temas
     Route::get('estudiantes_temas', [EstudianteTemaController::class, 'index'])->name('estudiantes_temas');
     Route::get('estudiantes_temas/crear', [EstudianteTemaController::class, 'crear'])->name('estudiantes_temas.crear');
     Route::get('estudiantes_temas/{id}/edit', [EstudianteTemaController::class, 'edit'])->name('estudiantes_temas.edit');
     Route::post('estudiantes_temas', [EstudianteTemaController::class, 'guardar'])->name('estudiantes_temas.guardar');
     Route::put('estudiantes_temas/{id}', [EstudianteTemaController::class, 'update'])->name('estudiantes_temas.update');
     Route::delete('estudiantes_temas/{id}/eliminar', [EstudianteTemaController::class, 'destroy'])->name('estudiantes_temas.eliminar');
-    /*Fin rutas del temas */
+    /*Fin rutas del temas
 
 });
 
-/* Rutas del menus del rol estudiante */
-Route::group(['prefix' => 'coordinar', 'middleware' => ['auth', 'estudiante']], function() {
+/* Rutas del menus del rol estudiante
+Route::group(['prefix' => 'estudiantes', 'middleware' => ['auth', 'estudiante']], function() {
 
-    /*Inicio rutas del estudiantes temas */
+    /*Inicio rutas del estudiantes temas
     Route::get('estudiantes_temas', [EstudianteTemaController::class, 'index'])->name('estudiantes_temas');
     Route::get('estudiantes_temas/crear', [EstudianteTemaController::class, 'crear'])->name('estudiantes_temas.crear');
     Route::get('estudiantes_temas/{id}/edit', [EstudianteTemaController::class, 'edit'])->name('estudiantes_temas.edit');
     Route::post('estudiantes_temas', [EstudianteTemaController::class, 'guardar'])->name('estudiantes_temas.guardar');
     Route::put('estudiantes_temas/{id}', [EstudianteTemaController::class, 'update'])->name('estudiantes_temas.update');
     Route::delete('estudiantes_temas/{id}/eliminar', [EstudianteTemaController::class, 'destroy'])->name('estudiantes_temas.eliminar');
-    /*Fin rutas del temas */
+    /*Fin rutas del temas
 
-});
+});*/

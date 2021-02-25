@@ -18,6 +18,6 @@ class VerificarUsuarioDocente
     {
         if (isDocente())
             return $next($request);
-        return redirect()->route('/Inicio');
+        return redirect()->route('Inicio');
     }
 }

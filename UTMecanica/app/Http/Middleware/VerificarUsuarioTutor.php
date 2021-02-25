@@ -18,6 +18,6 @@ class VerificarUsuarioTutor
     {
         if (isTutor())
             return $next($request);
-        return redirect()->route('/Inicio');
+        return redirect()->route('Inicio');
     }
 }

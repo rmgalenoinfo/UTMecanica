@@ -18,6 +18,6 @@ class VerificarUsuarioCoordinador
     {
         if (isCoordinar())
             return $next($request);
-        return redirect()->route('/Inicio');
+        return redirect()->route('Inicio');
     }
 }

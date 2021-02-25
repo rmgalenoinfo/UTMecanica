@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Session;
+//use Illuminate\Support\Facades\Session;
 
 if (!function_exists('isSuperAdmin')) {
     function isSuperAdmin() {

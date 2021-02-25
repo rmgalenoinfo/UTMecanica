@@ -18,6 +18,6 @@ class VerificarUsuarioAdministrador
     {
         if (isSuperAdmin())
             return $next($request);
-        return redirect()->route('/Inicio');
+        return redirect()->route('Inicio');
     }
 }
